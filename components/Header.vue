@@ -1,0 +1,79 @@
+<template>
+  <header class="header">
+    <div class="container">
+
+      <a href="/" title="番组放送" class="title">
+        <h1>{{ title }}</h1>
+      </a>
+
+      <header-nav></header-nav>
+
+    </div>
+  </header>
+</template>
+
+<script>
+  import HeaderNav from '~/components/HeaderNav'
+
+  export default {
+    name: 'Header',
+
+    components: {
+      HeaderNav
+    },
+
+    data () {
+      return {
+        title: '番组放送'
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  .header
+  {
+    height: 52px;
+    line-height: 52px;
+    margin-top: 15px;
+    position: relative;
+  }
+
+  .title
+  {
+    border-bottom: 0;
+  }
+
+  .title h1
+  {
+    margin: 0 0 0 10px;
+    font-size: 1.5em;
+    font-weight: 500;
+    display: inline-block;
+    position: relative;
+    transition: all .3s ease;
+  }
+
+  .title:hover h1
+  {
+    color: rgba(44, 62, 80, .75);
+  }
+
+  .title h1:after,
+  .title h1:before
+  {
+    content: "";
+    height: 1px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: rgba(44, 62, 80, .55);
+    bottom: 7px;
+  }
+
+  .title h1:after
+  {
+    bottom: 2px;
+  }
+
+</style>

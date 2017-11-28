@@ -1,0 +1,49 @@
+html,
+body
+{
+  color: #34495e;
+  font: 300 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+  color: #2c3e50;
+  font-weight: 300;
+}
+
+a,
+a:hover,
+a:focus,
+a:visited
+{
+  color: #d35400;
+  text-decoration: none;
+}
+
+a:hover
+{
+  border-bottom: 1px solid #d35400;
+}
+
+input
+{
+  color: #34495e;
+  font: 300 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+}
+
+input::-webkit-input-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder,
+input::placeholder
+{
+  color: #d2d8dc;
+}
+
+.container {
+  max-width: 730px;
+  margin: 0 auto;
+  clear: both;
+}
+

@@ -1,0 +1,17 @@
+*~
+.DS_Store
+
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+logs
+yarn-error.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+build
