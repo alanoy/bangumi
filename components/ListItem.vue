@@ -89,7 +89,6 @@
 </template>
 
 <script>
-  import Cover from './Cover.vue'
   import SiteLink from './SiteLink.vue'
   import DownloadLink from './DownloadLink.vue'
 
@@ -101,7 +100,7 @@
   export default {
     name: 'ListItem',
 
-    components: { SiteLink, DownloadLink, Cover },
+    components: { SiteLink, DownloadLink },
 
     props: {
       item: Object,
