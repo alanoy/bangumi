@@ -42,20 +42,22 @@
   }
 
   export default {
-    async asyncData ({ req, params }) {
-      let uri = '/api/data'
-      let { data, sites } = await axios.get(uri)
-      const date = new Date()
-      const weekday = date.getDay() + 1
-      const items = filterByWeekday(weekday, data)
+    asyncData ({ params, error }) {
+      return axios.get('/api/data')
+        .then((res) => {
+          const { sites, data } = res
+          const date = new Date()
+          const weekday = date.getDay() + 1
+          const items = filterByWeekday(weekday, data)
 
-      return {
-        origin: data,
-        items,
-        sites,
-        year: date.getFullYear(),
-        quarterly: [1, 4, 7, 10][Math.floor(date.getMonth() / 3)]
-      }
+          return {
+            origin: data,
+            items,
+            sites,
+            year: date.getFullYear(),
+            quarterly: [1, 4, 7, 10][Math.floor(date.getMonth() / 3)]
+          }
+        })
     },
 
     methods: {

@@ -22,12 +22,16 @@
   export default {
     name: 'Archives',
 
-    async asyncData () {
-      const { data } = await axios.get('/api/archives')
-
-      return {
-        archives: data
-      }
+    asyncData ({ params, error }) {
+      return axios.get('/api/archive')
+        .then((res) => {
+          return {
+            archives: res.data
+          }
+        })
+        .catch((e) => {
+          error({ statusCode: 404, message: 'Data not found' })
+        })
     },
 
     head () {

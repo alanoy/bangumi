@@ -1,7 +1,18 @@
-const router = require('express').Router()
+module.exports = (fastify, options, next) => {
+  const dataHandler = require('./data')
+  fastify.get('/data', async (req, reply) => {
+    return dataHandler(req)
+  })
 
-router.use(require('./data'))
-router.use(require('./fav'))
-router.use(require('./archives'))
+  const archivesHandler = require('./archives')
+  fastify.get('/archive', async (req, reply) => {
+    return archivesHandler(req)
+  })
 
-module.exports = router
+  const favHandler = require('./fav')
+  fastify.get('/fav', async (req, reply) => {
+    return favHandler(req)
+  })
+
+  next()
+}

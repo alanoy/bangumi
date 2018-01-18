@@ -1,13 +1,15 @@
-const router = require('express').Router()
 const { items } = require('bangumi-data')
 const { getQuarterly } = require('./utils')
 
-router.get('/archives', function (req, res, next) {
+module.exports = (req) => {
   let temp = {}
   let data = []
 
   items.forEach(item => {
-    const id = item.id.split('_')
+    if (!item.begin) return false
+
+    let id = item.begin.split('T')[0]
+    id = id.split('-')
     const year = id[0]
     const month = parseInt(id[1])
     const quarterly = getQuarterly(month)
@@ -27,10 +29,8 @@ router.get('/archives', function (req, res, next) {
 
   data.reverse()
 
-  res.json({
+  return {
     code: 0,
     data
-  })
-})
-
-module.exports = router
+  }
+}

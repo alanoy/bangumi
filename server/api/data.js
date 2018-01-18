@@ -1,5 +1,4 @@
-const router = require('express').Router()
-const { sites, items } = require('bangumi-data')
+const { siteMeta, items } = require('bangumi-data')
 const {
   filterSearchResult,
   getQuarterly
@@ -13,7 +12,10 @@ const getCurrentQuarterlyData = (year, quarterly) => {
   quarterly = parseInt(quarterly || getQuarterly(month))
 
   let res = items.filter(item => {
-    const id = item.id.split('_')
+    if (!item.begin) return false
+
+    let id = item.begin.split('T')[0]
+    id = id.split('-')
 
     if (year === parseInt(id[0], 10) &&
       quarterly === getQuarterly(parseInt(id[1]))) {
@@ -24,33 +26,31 @@ const getCurrentQuarterlyData = (year, quarterly) => {
   return res
 }
 
-router.get('/data', function (req, res, next) {
+module.exports = (req) => {
   let { keyword, id } = req.query
 
   if (keyword) {
     keyword = decodeURI(keyword)
     const data = filterSearchResult(items, keyword)
 
-    res.json({
+    return {
       code: 0,
       data,
-      sites: data.length ? sites : {}
-    })
+      sites: data.length ? siteMeta : {}
+    }
   } else if (id) {
     const idAry = id.split('-')
 
-    res.json({
+    return {
       code: 0,
       data: getCurrentQuarterlyData(idAry[0], idAry[1]),
-      sites
-    })
+      sites: siteMeta
+    }
   } else {
-    res.json({
+    return {
       code: 0,
       data: getCurrentQuarterlyData(),
-      sites
-    })
+      sites: siteMeta
+    }
   }
-})
-
-module.exports = router
+}

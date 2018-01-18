@@ -117,7 +117,7 @@
         const item = this.sites[prop]
 
         if (item.type === 'resource') {
-          resource[prop] =item
+          resource[prop] = item
         } else if (item.type === 'info') {
           info[prop] = item
         } else if (item.type === 'onair') {

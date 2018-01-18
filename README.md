@@ -6,7 +6,7 @@ Demo: [https://bangu.me](https://bangu.me)
 
 ## nuxt.config.js
 You can do some configuration by edit nuxt.config.js. And you must change
-`env.baseUrl: https://bangu.me` to your own baseUrl
+`env.baseUrl: '/` to your own baseUrl
 
 ## Build and setup
 

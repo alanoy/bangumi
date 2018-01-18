@@ -1,11 +1,10 @@
-const router = require('express').Router()
-const { sites, items } = require('bangumi-data')
+const { siteMeta, items } = require('bangumi-data')
 
-router.get('/fav', function (req, res, next) {
+module.exports = (req) => {
   let { ids } = req.query
   let list = []
 
-  if (!ids) return res.json({ error: 'wrong params' })
+  if (!ids) return { error: 'wrong params' }
 
   ids = ids.split(',')
 
@@ -21,11 +20,9 @@ router.get('/fav', function (req, res, next) {
     })
   })
 
-  res.json({
+  return {
     code: 0,
     items: list,
-    sites
-  })
-})
-
-module.exports = router
+    sites: siteMeta
+  }
+}
