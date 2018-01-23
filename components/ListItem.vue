@@ -30,8 +30,13 @@
         </div>
       </div>
 
-      <p class="bangumi-item--broadcast meta">
-        <span class="meta--title week">{{ weekday }}：</span>
+      <p class="meta">
+        <span class="meta--title">开播时间：</span>
+        <span class="meta--content">{{ date.begin }}</span>
+      </p>
+
+      <p class="bangumi-item--broadcast meta" v-if="item.sites.length > 1">
+        <span class="meta--title week">{{ date.weekday }}：</span>
 
         <span class="meta--content sites">
           <template v-for="(site, index) in item.sites">
@@ -134,22 +139,18 @@
     },
 
     computed: {
-      weekday () {
+      date () {
         const week = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
-        const { begin, end, sites } = this.item
-        let day
+        const { begin, end } = this.item
+        const date = new Date(begin)
+        const year = date.getFullYear()
+        const month = formatNumber(date.getMonth() + 1)
+        const day = formatNumber(date.getDate())
+        const weekday = week[date.getDay()]
 
-        if (end) return '已完结'
-
-        if (sites[0] && sites[0].begin) {
-          day = new Date(sites[0].begin)
-          const hour = formatNumber(day.getHours())
-          const minitues = formatNumber(day.getMinutes())
-
-          return week[day.getDay()] + ` (${hour} : ${minitues})`
-        } else {
-          day = new Date(begin).getDay()
-          return week[day] + ' (预计)'
+        return {
+          weekday,
+          begin: `${year}-${month}-${day}${end ? ' (完结)' : ''}`
         }
       },
 
@@ -219,13 +220,13 @@
     border-bottom: 1px solid #bdc3c7;
     position: relative;
     overflow: hidden;
-    min-height: 136px;
+    /* min-height: 136px; */
   }
 
   .bangumi-item--title
   {
     font-size: 1em;
-    margin: 10px 0;
+    margin: 5px 0;
     line-height: 1.4;
     padding-right: 25px;
   }
@@ -280,7 +281,7 @@
   .body > p
   {
     font-size: .9em;
-    margin: 10px 0;
+    margin: 5px 0;
   }
 
   .body .meta
@@ -317,12 +318,6 @@
     .bangumi-item--fav
     {
       top: 0;
-    }
-
-    .meta--item
-    {
-      display: block;
-      margin: 5px 0 10px;
     }
 
     .body > p
