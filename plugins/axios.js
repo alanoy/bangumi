@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let baseURL = 'http://localhost:3100'
+let baseURL = 'http://localhost:3000'
 if (process.browser && process.env.NODE_ENV === 'production') {
   baseURL = process.env.baseUrl
 }

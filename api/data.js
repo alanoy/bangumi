@@ -1,4 +1,6 @@
 const { siteMeta, items } = require('bangumi-data')
+const url = require('url')
+
 const {
   filterSearchResult,
   getQuarterly
@@ -26,31 +28,23 @@ const getCurrentQuarterlyData = (year, quarterly) => {
   return res
 }
 
-module.exports = (req) => {
-  let { keyword, id } = req.query
+module.exports = (req, res) => {
+  let { keyword } = url.parse(req.url, true).query
 
   if (keyword) {
     keyword = decodeURI(keyword)
     const data = filterSearchResult(items, keyword)
 
-    return {
+    res.end(JSON.stringify({
       code: 0,
       data,
       sites: data.length ? siteMeta : {}
-    }
-  } else if (id) {
-    const idAry = id.split('-')
-
-    return {
-      code: 0,
-      data: getCurrentQuarterlyData(idAry[0], idAry[1]),
-      sites: siteMeta
-    }
+    }))
   } else {
-    return {
+    res.end(JSON.stringify({
       code: 0,
       data: getCurrentQuarterlyData(),
       sites: siteMeta
-    }
+    }))
   }
 }

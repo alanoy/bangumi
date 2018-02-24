@@ -40,10 +40,3 @@
     }
   }
 </script>
-
-<style scoped>
-  .site
-  {
-    margin-right: 5px;
-  }
-</style>

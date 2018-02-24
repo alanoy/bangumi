@@ -1,6 +1,6 @@
 # Bangumi List
 
-A [Vue 2.0](https://vuejs.org.cn) and [Nuxt.js](https://nuxtjs.org) project, base on [bangumi-data](https://github.com/bangumi-data/bangumi-data).
+A [Vue 2.x](https://vuejs.org.cn) and [Nuxt.js](https://nuxtjs.org) project, base on [bangumi-data](https://github.com/bangumi-data/bangumi-data).
 
 Demo: [https://bangu.me](https://bangu.me)
 
@@ -12,9 +12,9 @@ You can do some configuration by edit nuxt.config.js. And you must change
 
 ``` bash
 # install dependencies
-$ npm install # Or yarn install
+$ npm install # Or yarn
 
-# serve with hot reload at localhost:3100
+# serve with hot reload at localhost:3000
 $ npm run dev
 
 # build for production and launch server

@@ -1,7 +1,7 @@
 const { items } = require('bangumi-data')
 const { getQuarterly } = require('./utils')
 
-module.exports = (req) => {
+module.exports = (req, res) => {
   let temp = {}
   let data = []
 
@@ -29,8 +29,8 @@ module.exports = (req) => {
 
   data.reverse()
 
-  return {
+  res.end(JSON.stringify({
     code: 0,
     data
-  }
+  }))
 }

@@ -300,7 +300,7 @@
 
   .meta--content > a
   {
-    margin-right: 5px;
+    margin-right: 8px;
   }
 
   @media screen and (max-width: 39.9375em) {

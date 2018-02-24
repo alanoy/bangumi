@@ -35,5 +35,11 @@ module.exports = {
   */
   build: {
     vendor: ['axios']
-  }
+  },
+
+  serverMiddleware: [
+    { path: '/api/data', handler: '~/api/data.js' },
+    { path: '/api/archives', handler: '~/api/archives.js' },
+    { path: '/api/fav', handler: '~/api/fav.js' }
+  ]
 }

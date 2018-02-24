@@ -1,7 +1,8 @@
 const { siteMeta, items } = require('bangumi-data')
+const url = require('url')
 
-module.exports = (req) => {
-  let { ids } = req.query
+module.exports = (req, res) => {
+  let { ids } = url.parse(req.url, true).query
   let list = []
 
   if (!ids) return { error: 'wrong params' }
@@ -20,9 +21,9 @@ module.exports = (req) => {
     })
   })
 
-  return {
+  res.end(JSON.stringify({
     code: 0,
     items: list,
     sites: siteMeta
-  }
+  }))
 }
