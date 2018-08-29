@@ -59,10 +59,7 @@
 
     methods: {
       filterByWeekday (weekday) {
-        this.items = []
-        setTimeout(() => {
-          this.items = filterByWeekday(weekday, this.origin)
-        }, 0)
+        this.items = filterByWeekday(weekday, this.origin)
       }
     },
 

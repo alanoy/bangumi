@@ -16,6 +16,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  loading: { color: '#e74c3c' },
   /*
   ** Global CSS
   */

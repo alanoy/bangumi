@@ -2,7 +2,7 @@
   <div class="container">
     <footer class="footer">
       <div class="copyright">
-        &copy; 2017, <a href="//bangu.me" title="番组放送">bangu.me</a> by <a href="//ideapart.com" title="ideapart">Alan</a>
+        &copy; 2017 - {{ currentYear }}, <a href="//bangu.me" title="番组放送">bangu.me</a> by <a href="//ideapart.com" title="ideapart">Alan</a>
       </div>
 
       <!--<div class="power">-->
@@ -11,6 +11,18 @@
     </footer>
   </div>
 </template>
+
+<script>
+  export default {
+    name: 'Footer',
+
+    data() {
+      return {
+        currentYear: new Date().getFullYear(),
+      }
+    }
+  }
+</script>
 
 <style scoped>
 
@@ -27,7 +39,7 @@
     border-bottom: 1px solid #bdc3c7;
     font-weight: 400;
   }
-  
+
   .footer a:hover {
     border-bottom-color: #2c3e50;
   }

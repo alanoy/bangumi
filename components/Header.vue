@@ -2,9 +2,9 @@
   <header class="header">
     <div class="container">
 
-      <a href="/" title="番组放送" class="title">
+      <nuxt-link to="/" title="番组放送" class="title">
         <h1>{{ title }}</h1>
-      </a>
+      </nuxt-link>
 
       <header-nav></header-nav>
 

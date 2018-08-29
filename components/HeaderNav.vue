@@ -8,16 +8,26 @@
     </span>
 
     <div class="menu--list">
-      <a v-for="(item, index) in menu"
-         :title="item.title"
-         :href="active === item.classname ? 'javascript:;' : item.url"
-         :class="`menu--item menu--${item.classname} ${active === item.classname ? 'active' : ''}`"
-         :key="index">
-        <i v-if="item.icon"
-           aria-hidden="true"
-           :class="`fa fa-${item.icon}`"></i>
-        <span v-else>{{ item.title }}</span>
-      </a>
+      <template v-for="(item, index) in menu">
+        <a
+          v-if="item.url"
+          :href="item.url"
+          :key="index"
+          class="menu--item">
+          <i
+            aria-hidden="true"
+            :class="`fa fa-${item.icon}`"></i>
+        </a>
+
+        <nuxt-link
+          v-else
+          :title="item.title"
+          :to="item.route || item.url"
+          :class="`menu--item menu--${item.classname} ${active === item.classname ? 'active' : ''}`"
+          :key="index">
+          <span>{{ item.title }}</span>
+        </nuxt-link>
+      </template>
     </div>
 
   </nav>
@@ -35,10 +45,10 @@
 
       return {
         menu: [
-          { title: '收藏', classname: 'favorite', url: '/favorite' },
-          { title: '搜索', classname: 'search', url: '/search' },
-          { title: '归档', classname: 'archives', url: '/archives' },
-          { title: '关于', classname: 'about', url: '/about' },
+          { title: '收藏', classname: 'favorite', route: '/favorite' },
+          { title: '搜索', classname: 'search', route: '/search' },
+          { title: '归档', classname: 'archives', route: '/archives' },
+          { title: '关于', classname: 'about', route: '/about' },
           {
             title: 'Github',
             classname: 'github',
@@ -67,7 +77,13 @@
       toggleMenuList () {
         this.isMenuActivated = !this.isMenuActivated
       }
-    }
+    },
+
+    watch: {
+      '$route.name' (nVal) {
+        this.active = nVal
+      }
+    },
   }
 </script>
 
@@ -101,7 +117,7 @@
   {
     border-bottom-color: #2c3e50;
   }
-  
+
   .menu--item.active
   {
     color: #bdc3c7;
@@ -183,7 +199,7 @@
     {
       display: none;
     }
-    
+
     .menu.show .menu--icon:before
     {
       -webkit-transform: rotate(45deg);
@@ -236,7 +252,7 @@
       -o-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
     }
-    
+
     .menu--list a
     {
       display: block;

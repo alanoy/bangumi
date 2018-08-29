@@ -29,7 +29,7 @@
 
     methods: {
       redirect () {
-        location.href = `/search?keyword=${this.keyword}`
+        this.$router.push(`/search?keyword=${this.keyword}`)
       },
 
       submit () {

@@ -2,9 +2,10 @@
   <div class="container">
     <div class="search-result" v-if="items">
 
-      <h2 class="search-result--title">搜索结果</h2>
-
-      <search v-on:search="search"></search>
+      <div class="search-result--head">
+        <h2 class="search-result--title">搜索结果</h2>
+        <search v-on:search="search"></search>
+      </div>
 
       <div class="search-result--null" v-if="!items.length">
         未搜索到任何结果。
@@ -72,10 +73,22 @@
     margin: 20px 25px;
   }
 
+  .search-result--head {
+    position: relative;
+  }
+
   .search-result--title
   {
-    margin: 15px 25px;
-    font-size: 1.4em;
+    position: absolute;
+    left: 16px;
+    top: 1px;
+    line-height: 38px;
+    z-index: 2;
+    background-color: #f2f2f2;
+    border-radius: 100px 0 0 100px;
+    padding: 0 15px;
+    font-size: .9em;
+    margin: 0;
   }
 
   .search
@@ -83,6 +96,7 @@
     margin: 20px 15px 15px;
     height: 40px;
     padding-top: 5px;
+    padding-left: 100px;
   }
 
 </style>

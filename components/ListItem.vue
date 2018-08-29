@@ -4,8 +4,8 @@
 
     <div class="body">
 
-      <h3 
-        class="bangumi-item--title" 
+      <h3
+        class="bangumi-item--title"
         v-html="itemTitle"
         v-if="type !== 'search'"></h3>
 
@@ -147,10 +147,11 @@
         const month = formatNumber(date.getMonth() + 1)
         const day = formatNumber(date.getDate())
         const weekday = week[date.getDay()]
+        const isEnd = end ? (Date.now() > new Date(end).getTime()) : false
 
         return {
           weekday,
-          begin: `${year}-${month}-${day}${end ? ' (完结)' : ''}`
+          begin: `${year}-${month}-${day}${isEnd ? ' (完结)' : ''}`
         }
       },
 
@@ -214,7 +215,7 @@
   .bangumi-item
   {
     margin: 10px;
-    padding: 10px;
+    padding: 10px 15px;
     box-sizing: border-box;
     background-color: #ecf0f1;
     border-bottom: 1px solid #bdc3c7;
