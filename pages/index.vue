@@ -4,11 +4,13 @@
     <sub-header
       :total="origin.length"
       :year="year"
-      :quarterly="quarterly"></sub-header>
+      :quarterly="quarterly" />
 
     <weekday-nav v-on:filter="filterByWeekday" />
 
-    <bangumi-list :items="items" :sites="sites"></bangumi-list>
+    <bangumi-list
+      :items="items"
+      :sites="sites" />
 
   </section>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <div class="about">
+    <div class="about text-gray">
 
       <p>版权动画播放地址聚合站</p>
 
@@ -31,6 +31,6 @@
 <style scoped>
   .about
   {
-    margin: 30px 40px 40px;
+    margin: 20px 0;
   }
 </style>

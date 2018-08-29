@@ -1,10 +1,12 @@
 <template>
-  <nav class="nav">
-    <a href="javascript:;"
-       :key="index"
-       :class="{ active: active == index }"
-       @click="filter(index)"
-       v-for="(item, index) in week">
+  <nav class="tabs nav">
+    <a
+      href="javascript:;"
+      :key="index"
+      class="tab"
+      :class="{ active: active == index }"
+      @click="filter(index)"
+      v-for="(item, index) in week">
       <span>{{ item }}</span>
     </a>
   </nav>
@@ -33,13 +35,9 @@
 </script>
 
 <style scoped>
-  .nav 
+  .nav
   {
-    background-color: #ecf0f1;
-    border-bottom: 1px solid #bdc3c7;
-    height: 42px;
-    margin: 15px 10px;
-    padding: 0 10px;
+    height: 48px;
     position: relative;
     display: -webkit-box;
     display: -webkit-flex;
@@ -49,40 +47,13 @@
 
   .nav a
   {
-    color: #7f8c8d;
     display: block;
-    line-height: 42px;
-    height: 42px;
+    line-height: 48px;
+    height: 48px;
     text-align: center;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
     flex: 1;
+    margin-right: 0;
+    min-width: auto;
   }
 
-  .nav a:hover
-  {
-    border-bottom: 0;
-  }
-
-  .nav a:after
-  {
-    content: "";
-    height: 2px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-  .nav .active
-  {
-    color: #e74c3c;
-    position: relative;
-  }
-
-  .nav .active:after
-  {
-    background-color: #e74c3c;
-  }
 </style>

@@ -5725,6 +5725,10 @@ shell-quote@^1.6.1:
     array-reduce "~0.0.0"
     jsonify "~0.0.0"
 
+sierra-library@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/sierra-library/-/sierra-library-2.0.0.tgz#54ae01a02c558ffde636def0782dbcf0d925cd7a"
+
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"

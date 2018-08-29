@@ -20,7 +20,7 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ['~/assets/css/main.css'],
+  css: ['~/node_modules/sierra-library/dist/sierra.min.css', '~/assets/css/main.css'],
 
   cache: {
     max: 1000,

@@ -4,9 +4,11 @@
     <sub-header
       :total="items.length"
       :year="year"
-      :quarterly="quarterly"></sub-header>
+      :quarterly="quarterly" />
 
-    <bangumi-list :items="items" :sites="sites"></bangumi-list>
+    <bangumi-list
+      :items="items"
+      :sites="sites" />
 
   </section>
 </template>

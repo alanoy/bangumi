@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div class="search input input-with-icon full-width">
     <input
       class="search--input"
       @keyup.enter="submit"
@@ -7,7 +7,13 @@
       type="text"
       placeholder="搜索"/>
 
-    <span class="search--loading" v-show="loading">搜索中...</span>
+    <i
+      v-if="loading"
+      class="input-icon fa fa-cog fa-spin"></i>
+    <button
+      v-else
+      @click="submit"
+      class="input-icon fa fa-search fa-lg"></button>
   </div>
 </template>
 
@@ -42,6 +48,9 @@
         }
 
         this.loading = true
+        this.$router.push({
+          query: { keyword }
+        })
 
         axios
           .get(`/api/data?keyword=${encodeURI(keyword)}`)
@@ -61,35 +70,12 @@
 
   .search
   {
-    height: 30px;
-    border-radius: 100px;
-    border: 1px solid #e2e5e8;
-    background-color: #fff;
-    box-sizing: border-box;
-    padding: 0 10px;
-    overflow: hidden;
     position: relative;
   }
 
-  .search--input
-  {
-    width: 100%;
-    outline: 0;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    font-size: 14px;
-  }
-
-  .search--loading
-  {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, .92);
-    text-align: center;
+  .search input {
+    height: 38px;
+    line-height: 38px;
   }
 
 </style>

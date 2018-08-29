@@ -1,14 +1,20 @@
 <template>
   <div class="container">
-    <div class="favorite" v-if="items">
+    <div
+      class="favorite"
+      v-if="items">
 
-      <div class="favorite--null" v-if="!items.length">
+      <div
+        class="text-gray favorite--null"
+        v-if="items && !items.length">
         你还未有任何收藏。
       </div>
 
       <div class="favorite--list" v-else>
-        <h2 class="title">收藏</h2>
-        <bangumi-list :items="items" :sites="sites"></bangumi-list>
+        <h2 class="text-gray title">收藏</h2>
+        <bangumi-list
+          :items="items"
+          :sites="sites" />
       </div>
 
     </div>
@@ -44,10 +50,10 @@
     methods: {
       async fetch () {
         const uri = '/api/fav'
-        let ids = localStorage.getItem('favorite')
+        let ids = localStorage.getItem('favorite') || []
+        ids = JSON.parse(ids).join(',')
 
         if (ids) {
-          ids = JSON.parse(ids).join(',')
           const { items, sites } = await axios.get(uri, { params: { ids } })
           this.items = items
           this.sites = sites
@@ -64,13 +70,16 @@
 
   .favorite--null
   {
-    margin: 20px 25px;
+    margin: 20px 0;
+    font-size: 1.4em;
   }
 
   .favorite--list .title
   {
-    margin: 15px 25px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
     font-size: 1.4em;
+    border-bottom: 1px solid #465f78;
   }
 
 </style>

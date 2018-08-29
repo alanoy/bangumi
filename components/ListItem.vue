@@ -1,6 +1,7 @@
 <template>
-  <div :class="`bangumi-item bangumi-item__${type || 'normal'}`"
-       :data-id="item.id">
+  <div
+    :class="`bangumi-item bangumi-item__${type || 'normal'}`"
+    :data-id="item.id">
 
     <div class="body">
 
@@ -9,10 +10,14 @@
         v-html="itemTitle"
         v-if="type !== 'search'"></h3>
 
-      <div class="bangumi-item--title" v-else>
+      <div
+        class="bangumi-item--title"
+        v-else>
         <div class="title">
           <strong>{{ item.lang }}：</strong>
-          <span class="title--list" v-html="item.title"></span>
+          <span
+            class="title--list"
+            v-html="item.title"></span>
         </div>
 
         <div
@@ -31,26 +36,28 @@
       </div>
 
       <p class="meta">
-        <span class="meta--title">开播时间：</span>
+        <span class="meta--title text-gray">开播时间：</span>
         <span class="meta--content">{{ date.begin }}</span>
       </p>
 
-      <p class="bangumi-item--broadcast meta" v-if="item.sites.length > 1">
-        <span class="meta--title week">{{ date.weekday }}：</span>
+      <p
+        class="bangumi-item--broadcast meta"
+        v-if="item.sites.length > 1">
+        <span class="meta--title week text-gray">{{ date.weekday }}：</span>
 
         <span class="meta--content sites">
           <template v-for="(site, index) in item.sites">
             <site-link
               :key="index"
               :item="site"
-              :sites="onair"></site-link>
+              :sites="onair" />
           </template>
         </span>
       </p>
 
       <p class="meta">
         <span class="meta--item">
-          <span class="meta--title">下载：</span>
+          <span class="meta--title text-gray">下载：</span>
 
           <span class="meta--content">
             <template v-for="(link, index) in resource">
@@ -58,35 +65,36 @@
                 :key="index"
                 :data="item"
                 :title="itemTitle"
-                :item="link"></download-link>
+                :item="link" />
             </template>
           </span>
         </span>
 
         <span class="meta--item">
-          <span class="meta--title">链接：</span>
+          <span class="meta--title text-gray">链接：</span>
 
           <span class="meta--content">
-            <a :href="item.officialSite"
-               v-if="item.officialSite"
-               target="_blank">官网</a>
+            <a
+              :href="item.officialSite"
+              v-if="item.officialSite"
+              target="_blank">官网</a>
             <template v-for="(site, index) in item.sites">
               <site-link
                 :key="index"
                 :item="site"
-                :sites="info"></site-link>
+                :sites="info" />
             </template>
           </span>
         </span>
       </p>
 
-      <span class="bangumi-item--fav"
-            :class="{faved: isFaved}"
-            v-if="bgmId && (typeof isFaved === 'boolean')"
-            @click="addFav(bgmId)">
-        <i class="fa fa-heart" v-if="isFaved"></i>
-        <i class="fa fa-heart-o" v-else></i>
-      </span>
+      <button
+        v-if="bgmId && (typeof isFaved === 'boolean')"
+        class="button button-only-icon bangumi-item--fav"
+        :class="`${isFaved ? 'button-red' : 'button-default'}`"
+        @click="addFav(bgmId)">
+        <i class="fa fa-heart"></i>
+      </button>
 
     </div>
 
@@ -214,14 +222,12 @@
 
   .bangumi-item
   {
-    margin: 10px;
-    padding: 10px 15px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
     box-sizing: border-box;
-    background-color: #ecf0f1;
-    border-bottom: 1px solid #bdc3c7;
+    border-bottom: 1px solid #465f78;
     position: relative;
     overflow: hidden;
-    /* min-height: 136px; */
   }
 
   .bangumi-item--title
@@ -264,13 +270,16 @@
     right: 0;
     top: 10px;
     line-height: 1.4;
-    color: #bdc3c7;
     cursor: pointer;
+    margin: 0;
+    height: 38px;
+    line-height: 38px;
+    width: 38px;
   }
 
-  .bangumi-item--fav.faved
-  {
-    color: #d35400;
+  .bangumi-item--fav i {
+    font-size: 1.4em;
+    margin-bottom: -10%;
   }
 
   .body
@@ -294,22 +303,12 @@
     margin-right: 20px;
   }
 
-  .meta--title
-  {
-    color: #7f8c8d;
-  }
-
   .meta--content > a
   {
     margin-right: 8px;
   }
 
   @media screen and (max-width: 39.9375em) {
-
-    .bangumi-item
-    {
-      padding-bottom: 0;
-    }
 
     .bangumi-item--title
     {

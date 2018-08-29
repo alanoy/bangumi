@@ -40,7 +40,7 @@ export default {
   .title,
   .info
   {
-    margin: 15px 0;
+    margin: 20px 0;
     line-height: 1.2;
   }
 

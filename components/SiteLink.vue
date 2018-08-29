@@ -1,8 +1,9 @@
 <template>
-  <a :href="href"
-     target="_blank"
-     v-if="sites[site]"
-     class="site">{{ title }}</a>
+  <a
+    :href="href"
+    target="_blank"
+    v-if="sites[site]"
+    class="site">{{ title }}</a>
 </template>
 
 <script>

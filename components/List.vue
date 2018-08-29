@@ -6,7 +6,7 @@
         :key="i"
         :type="type"
         :item="item"
-        :sites="sites"></list-item>
+        :sites="sites" />
     </template>
 
   </div>

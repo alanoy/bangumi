@@ -1,9 +1,12 @@
 <template>
-  <nav class="menu"
-       v-if="menu"
-       :class="{show: isMenuActivated}">
+  <nav
+    class="menu"
+    v-if="menu"
+    :class="{show: isMenuActivated}">
 
-    <span class="menu--icon" @click="toggleMenuList">
+    <span
+      class="menu--icon"
+      @click="toggleMenuList">
       <span></span>
     </span>
 
@@ -91,7 +94,6 @@
   .menu
   {
     float: right;
-    margin-right: 10px;
   }
 
   .menu--icon
@@ -103,8 +105,12 @@
   {
     margin-left: 15px;
     font-size: .9em;
-    color: #2c3e50;
-    border-bottom: 1px solid transparent;
+    color: #bbbfc6;
+    transition: all .15s ease;
+  }
+
+  .menu--item:hover {
+    color: #969da6;
   }
 
   .menu--item .fa
@@ -113,14 +119,9 @@
     vertical-align: middle;
   }
 
-  .menu--item:hover
-  {
-    border-bottom-color: #2c3e50;
-  }
-
   .menu--item.active
   {
-    color: #bdc3c7;
+    color: #969da6;
     cursor: default;
   }
 
@@ -228,7 +229,7 @@
       right: 10px;
       top: 52px;
       float: none;
-      background-color: #fff;
+      background-color: #dee6ea;
       z-index: 20;
       box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
       -webkit-transform: translate3d(120%, 0, 0);
@@ -253,15 +254,16 @@
       transform: translate3d(0, 0, 0);
     }
 
-    .menu--list a
+    .menu--item
     {
       display: block;
       margin: 10px 0;
       padding-left: 20px;
       padding-right: 20px;
-      text-align: right;
+      text-align: center;
       line-height: 2.5;
       box-sizing: border-box;
+      color: #404040;
     }
 
   }

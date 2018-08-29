@@ -1,18 +1,23 @@
 <template>
-  <div class="container" style="overflow: hidden;">
+  <div class="row container">
+    <div
+      class="col-md-6 archives"
+      v-for="(data, i) in archives"
+      :key="i">
 
-    <div class="archives" v-for="(data, i) in archives" :key="i">
-      <h2 class="title">{{ data.year }} 年：</h2>
-
+      <h2 class="text-gray title">{{ data.year }} 年：</h2>
       <ul class="list">
-        <li class="item" v-for="(len, m) in data.items" :key="m">
-          <a :href="`/archive/${data.year}-${m}`"
-             :title="`${data.year} 年 ${m} 月番`">{{ data.year }} 年 {{ m }} 月番（{{
-            len }}）</a>
+        <li
+          class="item"
+          v-for="(len, m) in data.items"
+          :key="m">
+          <a
+            :href="`/archive/${data.year}-${m}`"
+            :title="`${data.year} 年 ${m} 月番`">{{ data.year }} 年 {{ m }} 月番（{{ len }}）</a>
         </li>
       </ul>
-    </div>
 
+    </div>
   </div>
 </template>
 
@@ -42,11 +47,8 @@
 <style scoped>
   .archives
   {
-    margin: 15px 0;
-    padding: 0 10px;
+    margin: 20px 0;
     box-sizing: border-box;
-    width: 50%;
-    float: left;
     min-height: 210px;
   }
 
