@@ -4,7 +4,7 @@ A [Vue 2.x](https://vuejs.org.cn) and [Nuxt.js](https://nuxtjs.org) project, bas
 
 Demo: [https://bangu.me](https://bangu.me)
 
-Screenshot: ![](static/screenshots.jpg?raw=true)
+Screenshot: ![](/static/screenshot.jpg)
 
 ## nuxt.config.js
 You can do some configuration by edit nuxt.config.js. And you must change
