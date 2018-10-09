@@ -1,6 +1,6 @@
 {
   "name": "bangumi",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "bangumi list",
   "author": "Alan Ouyang <alanoy11@gmail.com>",
   "private": true,
@@ -17,17 +17,17 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "bangumi-data": "^0.2.29",
-    "nuxt": "^1.4.2",
+    "bangumi-data": "^0.2.35",
+    "nuxt": "^2.1.0",
     "sierra-library": "^2.0.0",
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "babel-eslint": "^9.0.0",
-    "eslint": "^5.4.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.6.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^2.1.0",
+    "eslint-loader": "^2.1.1",
     "eslint-plugin-vue": "^4.7.1"
   }
 }
