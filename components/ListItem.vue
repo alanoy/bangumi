@@ -78,9 +78,9 @@
               :href="item.officialSite"
               v-if="item.officialSite"
               target="_blank">官网</a>
-            <template v-for="(site, index) in item.sites">
+            <template v-for="site in item.sites">
               <site-link
-                :key="index"
+                :key="site.id"
                 :item="site"
                 :sites="info" />
             </template>
