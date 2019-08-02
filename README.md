@@ -2,11 +2,12 @@
 
 A [Vue 2.x](https://vuejs.org.cn) and [Nuxt.js](https://nuxtjs.org) project, base on [bangumi-data](https://github.com/bangumi-data/bangumi-data).
 
-Demo: [https://bangu.me](https://bangu.me)
+Demo: [https://bgm.ideapart.com](https://bgm.ideapart.com)
 
 Screenshot: ![](/static/screenshot.jpg)
 
 ## nuxt.config.js
+
 You can do some configuration by edit nuxt.config.js. And you must change
 `env.baseUrl: '/'` to your own baseUrl
 
@@ -23,4 +24,3 @@ $ npm run dev
 $ npm run build
 $ npm start
 ```
-

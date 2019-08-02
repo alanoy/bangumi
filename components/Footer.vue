@@ -2,12 +2,8 @@
   <div class="container">
     <footer class="footer text-gray">
       <div class="copyright">
-        &copy; 2017-{{ currentYear }}, <a href="//bangu.me" title="番组放送">bangu.me</a> by <a href="//ideapart.com" title="ideapart">Alan</a>
+        &copy; 2017-{{ currentYear }}, <a href="//bgm.ideapart.com" title="番组放送">bgm.ideapart.com</a> by <a href="//ideapart.com" title="ideapart">Alan</a>
       </div>
-
-      <!--<div class="power">-->
-        <!--Host on <a href="http://www.vultr.com/?ref=6878833">VULTR</a>-->
-      <!--</div>-->
     </footer>
   </div>
 </template>

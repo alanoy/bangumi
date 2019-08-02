@@ -43,7 +43,7 @@
     data () {
       const share = {
         title: '番组放送——版权动画播放地址聚合站',
-        url: 'https://bangu.me/'
+        url: 'https://bgm.ideapart.com/'
       }
 
       return {
