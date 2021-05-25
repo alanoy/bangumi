@@ -16,9 +16,15 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^0.19.2",
     "bangumi-data": "^0.3.60",
     "nuxt": "^2.15.6",
+=======
+    "axios": "^0.21.1",
+    "bangumi-data": "^0.3.8",
+    "nuxt": "^2.11.0",
+>>>>>>> ef5b581d15d3039654399e257cb8dd47c450b016
     "sierra-library": "^2.0.0",
     "url": "^0.11.0"
   },
