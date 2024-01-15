@@ -50,9 +50,5 @@ export default defineNuxtConfig({
     },
   },
 
-  routeRules: {
-    '/': { swr: 1000 * 60 * 60 * 12 },
-    '/archives': { swr: 1000 * 60 * 60 * 12 },
-    '/archives/**': { swr: 1000 * 60 * 60 * 12 },
-  },
+  routeRules: {},
 })
