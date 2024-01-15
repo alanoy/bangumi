@@ -17,9 +17,7 @@ const dmhy = computed(() => {
 
 const bgmLink = computed(() => {
   const { bangumi } = props.info
-  if (!bangumi) return ''
-
-  return bangumi.urlTemplate.replace('{{id}}', props.id)
+  return bangumi ? bangumi.urlTemplate.replace('{{id}}', `${props.id}`) : ''
 })
 </script>
 

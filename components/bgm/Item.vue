@@ -36,11 +36,7 @@ const name = computed(() => {
     return titleArray[0]
   }
 
-  if (title) {
-    return title
-  }
-
-  return nameCN || name || ''
+  return title || nameCN || name || ''
 })
 
 const showFavorite = computed(() => {
