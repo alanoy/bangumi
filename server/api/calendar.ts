@@ -1,6 +1,6 @@
 import { items } from 'bangumi-data'
-import { BgmtvCalendar } from '../../types/bgmtv'
-import { mergeBgmItems } from '../../utils'
+import { BgmtvCalendar } from '@/types/bgmtv'
+import { mergeBgmItems } from '@/utils'
 
 const bgmItems = items as unknown as BgmItem[]
 

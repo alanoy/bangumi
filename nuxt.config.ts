@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import path from 'path'
 
 // ========== custom config ==========
 const appTitle = 'Bangumi'
@@ -15,7 +16,7 @@ export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: true },
   alias: {
-    '@': '/<rootDir>',
+    '@': path.resolve(__dirname, './'),
   },
 
   app: {

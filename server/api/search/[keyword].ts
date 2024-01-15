@@ -1,5 +1,5 @@
 import { items } from 'bangumi-data'
-import { mergeBgmItems } from '../../../utils'
+import { mergeBgmItems } from '@/utils'
 
 const bgmItems = items as unknown as BgmItem[]
 

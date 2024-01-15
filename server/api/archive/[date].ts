@@ -1,5 +1,5 @@
 import { items } from 'bangumi-data'
-import { getQuarter, getBgmId } from '../../../utils'
+import { getQuarter, getBgmId } from '@/utils'
 
 const bgmItems = items as unknown as BgmItem[]
 
