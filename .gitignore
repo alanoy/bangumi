@@ -5,6 +5,7 @@
 .nitro
 .cache
 dist
+mock.json
 
 # Node dependencies
 node_modules

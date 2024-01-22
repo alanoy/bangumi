@@ -9,6 +9,10 @@ const weekday: ComputedRef<number> = computed(() => {
   return typeof weekday !== 'undefined' ? Number(weekday) : today.getDay() + 1
 })
 
+definePageMeta({
+  keepAlive: true,
+})
+
 function filterByWeekday(weekdayNumber: number, items: BgmItem[] = origin.value) {
   if (weekdayNumber === 0) {
     list.value = items

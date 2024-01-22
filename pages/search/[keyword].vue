@@ -2,9 +2,14 @@
 const route = useRoute()
 const items = ref<BgmItem[]>([])
 const keyword = ref<string>('')
+const { t } = useI18n()
 
 useHead({
-  title: '搜索',
+  title: t('search'),
+})
+
+definePageMeta({
+  keepAlive: true,
 })
 
 const { pending, data: searchResult } = await useAsyncData(
@@ -34,7 +39,7 @@ if (route.params.keyword) {
       v-show="!pending && !items.length"
       class="text-2xl p-5 text-neutral-500"
     >
-      暂无收藏数据。
+      {{ $t('no-result') }}
     </h3>
 
     <BgmList

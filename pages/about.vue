@@ -1,6 +1,9 @@
 <script setup lang="ts">
+const { t } = useI18n()
+const { appTitle } = useRuntimeConfig().public
+
 useHead({
-  title: '关于',
+  title: t('about'),
 })
 </script>
 
@@ -8,7 +11,7 @@ useHead({
   <section class="bg-base-100">
     <div class="p-5 leading-10">
       <p>
-        版权动画播放地址聚合站 by
+        {{ appTitle }} App by
         <a
           href="//ideapart.com/"
           title="ideapart"
@@ -18,24 +21,29 @@ useHead({
           Alan
         </a>
       </p>
-      <p>
-        数据来源：<a
-          href="https://github.com/bangumi-data/bangumi-data.git"
-          rel="noreferrer"
-          class="link"
-        >
-          bangumi-data
-        </a>
-      </p>
-      <p>
-        图片来源：<a
-          href="http://bangumi.tv/"
-          rel="noreferrer"
-          class="link"
-        >
-          番组计划
-        </a>
-      </p>
+      <div class="mt-4">
+        {{ $t('sources.data') }}:
+        <ul class="ml-8 list-disc list-inside">
+          <li>
+            <a
+              href="https://github.com/bangumi-data/bangumi-data.git"
+              rel="noreferrer"
+              class="link"
+            >
+              bangumi-data
+            </a>
+          </li>
+          <li>
+            <a
+              href="http://bangumi.tv/"
+              rel="noreferrer"
+              class="link"
+            >
+              bangumi.tv
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 </template>

@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-const { socialMediaList } = useRuntimeConfig().public as unknown as {
-  socialMediaList: NavbarMenu[]
-}
-
 const props = withDefaults(
   defineProps<{
     isDropdown?: boolean
@@ -12,11 +8,11 @@ const props = withDefaults(
   },
 )
 
+const { t } = useI18n()
 const menus: NavbarMenu[] = [
-  { title: '收藏', classname: 'favorite', route: '/favorite' },
-  { title: '归档', classname: 'archives', route: '/archives' },
-  { title: '关于', classname: 'about', route: '/about' },
-  ...(socialMediaList || []),
+  { title: t('collections.title'), route: '/collections' },
+  { title: t('archives'), route: '/archives' },
+  { title: t('about'), route: '/about' },
 ]
 
 const classList = computed(() => {
@@ -107,6 +103,13 @@ function closeDropdown() {
           </svg>
           <template v-else>{{ menu.title }}</template>
         </NuxtLink>
+      </li>
+      <li class="inline-flex md:hidden">
+        <User
+          class-list=""
+          :show-icon="false"
+          button-class="p-0 hover:bg-transparent"
+        />
       </li>
     </ul>
   </div>

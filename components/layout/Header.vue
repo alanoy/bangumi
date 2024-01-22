@@ -14,7 +14,7 @@ watch(
     <div class="navbar-start">
       <LayoutMenus is-dropdown />
       <NuxtLink
-        class="btn btn-ghost text-primary hover:btn-primary hover:bg-primary text-xl md:text-3xl"
+        class="btn btn-ghost text-primary hover:text-primary-content hover:bg-primary text-xl md:text-2xl"
         to="/"
         :title="appTitle"
       >
@@ -27,8 +27,11 @@ watch(
     </div>
 
     <div class="navbar-end">
-      <LayoutColorScheme class="mr-2" />
-      <LayoutSearch />
+      <ColorScheme />
+      <div class="md:inline-block hidden">
+        <User />
+      </div>
+      <Search class="ml-2" />
     </div>
   </nav>
 </template>

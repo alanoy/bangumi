@@ -8,11 +8,15 @@ const props = defineProps<{
 const href = computed(() => {
   const { site, meta } = props
 
-  if (!meta) return ''
-  if (site.url) return site.url
+  if (!meta) {
+    return ''
+  }
 
-  const url = meta.urlTemplate
-  return url.replace('{{id}}', props.id)
+  if (site.url) {
+    return site.url
+  }
+
+  return meta.urlTemplate.replace('{{id}}', `${props.id}`)
 })
 
 const title = computed(() => {

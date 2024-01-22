@@ -1,6 +1,13 @@
 <script lang="ts" setup>
+const i18n = useI18n()
+const { yearToLocaleString, quarterToLocaleString } = useDate()
+
 useHead({
-  title: '归档',
+  title: i18n.t('archives'),
+})
+
+definePageMeta({
+  keepAlive: true,
 })
 
 const items = ref<ArchiveItem[]>([])
@@ -20,7 +27,7 @@ if (data.value) {
         class="card card-side bg-base-100 shadow-lg dark:shadow-xl dark:bg-base-300"
       >
         <div class="card-body">
-          <h3 class="card-title">{{ item.year }} 年</h3>
+          <h3 class="card-title">{{ yearToLocaleString(item.year) }}</h3>
           <ol>
             <li
               v-for="(len, m) in item.items"
@@ -29,10 +36,10 @@ if (data.value) {
             >
               <NuxtLink
                 :to="`/archive/${item.year}-${m}`"
-                :title="`${item.year} 年 ${m} 月番`"
+                :title="quarterToLocaleString(item.year, Number(m))"
                 class="link link-hover link-primary"
               >
-                {{ item.year }} 年 {{ m }} 月番（{{ len }}）
+                {{ quarterToLocaleString(item.year, Number(m)) }} ({{ len }})
               </NuxtLink>
             </li>
           </ol>

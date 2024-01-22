@@ -12,6 +12,7 @@ const router = useRouter()
 const week = useWeek()
 const isArchive = computed(() => route.path.includes('/archive'))
 const activeWeekday = ref<number>(props.currentWeekday || 0)
+const { quarterToLocaleString } = useDate()
 
 function onChangeWeekday(index: number) {
   const elem = document.activeElement as HTMLElement
@@ -29,11 +30,11 @@ function onChangeWeekday(index: number) {
   <nav class="flex items-center mb-6">
     <h2
       v-if="year"
-      class="text-lg"
+      class="text-lg font-medium"
     >
-      <template v-if="quarterly">{{ year }} 年 {{ quarterly }} 月番组</template>
-      <template v-else>每日放送</template>
-      <span class="hidden sm:inline-flex">（共 {{ total }} 部）</span>
+      <template v-if="quarterly">{{ quarterToLocaleString(year, quarterly) }}</template>
+      <template v-else>{{ $t('onAir.title') }}</template>
+      <span class="badge badge-ghost badge-sm ml-2">{{ $t('total.subjects') }} {{ total }}</span>
     </h2>
 
     <div

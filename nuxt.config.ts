@@ -1,10 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import path from 'path'
 
 // ========== custom config ==========
 const appTitle = 'Bangumi'
-
-// will be displayed in navbar, such as github, twitter, etc.
-const socialMediaList: NavbarMenu[] = []
 
 // dev server port
 const port = 3000
@@ -15,7 +13,7 @@ export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: true },
   alias: {
-    '@': '/<rootDir>',
+    '@': path.resolve(__dirname, './'),
   },
 
   app: {
@@ -34,24 +32,37 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode'],
+  modules: ['@nuxtjs/i18n', '@nuxtjs/tailwindcss', '@nuxtjs/color-mode'],
+
   colorMode: {
     preference: 'fantasy', // default theme
     dataValue: 'theme',
     classSuffix: '',
   },
 
+  i18n: {
+    locales: ['zh-cn', 'en'],
+    defaultLocale: 'zh-cn',
+  },
+
   devServer: { port },
   runtimeConfig: {
+    app: {
+      bgmtv: {
+        appId: process.env.BGMTV_APP_ID,
+        secret: process.env.BGMTV_APP_SECRET,
+        redirectURI: process.env.BGMTV_REDIRECT_URI,
+        userAgent: process.env.BGMTV_USERAGENT,
+      },
+      sessionSecret: process.env.NUXT_SESSION_SECRET,
+    },
     public: {
       appTitle,
-      socialMediaList,
+      isBgmtvAuthorize: process.env.BGMTV_AUTHORIZE === 'true',
     },
   },
 
   routeRules: {
-    '/': { swr: 1000 * 60 * 60 * 12 },
-    '/archives': { swr: 1000 * 60 * 60 * 12 },
-    '/archives/**': { swr: 1000 * 60 * 60 * 12 },
+    // '/item/*': { swr: true },
   },
 })

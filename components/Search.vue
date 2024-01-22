@@ -23,7 +23,7 @@ function onSearch() {
     <input
       v-model="keyword"
       type.native="search"
-      placeholder="搜索"
+      :placeholder="$t('search')"
       class="input input-bordered input-sm w-full max-w-xs"
     />
   </form>

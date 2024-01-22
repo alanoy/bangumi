@@ -18,3 +18,18 @@ export const mergeBgmItems = (bgmItems: BgmItem[], bgmtvItems: BgmtvItem[]) => {
     }
   })
 }
+
+export const getLocalObject = (key: string) => {
+  const dataString = localStorage.getItem(key)
+
+  return dataString ? JSON.parse(dataString) : null
+}
+
+export const setLocalObject = (key: string, value: Record<string, any>) => {
+  const data = getLocalObject(key) || {}
+
+  Object.assign(data, value)
+  localStorage.setItem(key, JSON.stringify(data))
+}
+
+export const sleep = (ms: number = 1000) => new Promise(resolve => setTimeout(resolve, ms))

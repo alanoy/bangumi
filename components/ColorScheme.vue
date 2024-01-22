@@ -11,7 +11,7 @@ function onChangeTheme(name: string) {
 <template>
   <div class="dropdown">
     <div
-      class="btn btn-ghost"
+      class="btn btn-ghost btn-sm"
       role="button"
       tabindex="0"
     >
