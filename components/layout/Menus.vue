@@ -23,7 +23,7 @@ const classList = computed(() => {
   if (props.isDropdown) {
     parent = 'dropdown'
     ul =
-      'menu menu-sm dropdown-content z-[1] p-2 shadow-xl bg-base-100 dark:bg-base-300 rounded-box w-24 flex-column'
+      'menu menu-sm dropdown-content z-[1] p-2 shadow-xl bg-base-100 dark:bg-base-300 rounded-box w-32 flex-column'
     li = 'basis-full w-full'
   }
 
