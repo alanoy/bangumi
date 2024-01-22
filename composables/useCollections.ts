@@ -58,7 +58,7 @@ export const useCollections = () => {
     return t(`collections.type.${type}`)
   }
 
-  function getStatus(type: number | undefined) {
+  function getStatusClass(type: number | undefined) {
     // 1: 想看, 2: 看过, 3: 在看, 4: 搁置, 5: 抛弃
     let status
 
@@ -82,7 +82,7 @@ export const useCollections = () => {
         status = 'error'
     }
 
-    return status
+    return `text-${status}`
   }
 
   async function setBgmtvCollections(id: number, params: { type?: number; rate?: number }) {
@@ -100,7 +100,7 @@ export const useCollections = () => {
     getLocalCollections,
     setLocalCollections,
     getLocalIds,
-    getStatus,
+    getStatusClass,
     getType,
     getTypeText,
     collecting,

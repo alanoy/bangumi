@@ -41,9 +41,10 @@ export default defineEventHandler(async event => {
   const { getSession } = useH3Session()
 
   try {
-    const { data: auth } = await getSession(event)
+    const auth = await getSession(event)
+    const { username } = auth.data.user
     const res = (await fetch(
-      getUrl(`/v0/users/${auth.user.username}/collections`, true),
+      getUrl(`/v0/users/${username}/collections`, false),
       {
         params: { limit, offset },
       },

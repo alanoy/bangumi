@@ -12,15 +12,18 @@ export default defineEventHandler(async event => {
     }
   }
 
+  const { getSession } = useH3Session()
+  const auth = await getSession(event)
+
   async function getSubject() {
-    return (await fetch(`/v0/subjects/${id}`, {}, event)) as BgmtvSubject
+    const subjectUrl = getUrl(`/v0/subjects/${id}`, false)
+    return (await fetch(subjectUrl, {}, event)) as BgmtvSubject
   }
 
   async function getCollection() {
     try {
-      const { getSession } = useH3Session()
-      const { data: auth } = await getSession(event)
-      const collectionUrl = getUrl(`/v0/users/${auth.user.username}/collections/${id}`, false)
+      const { username } = auth.data.user
+      const collectionUrl = getUrl(`/v0/users/${username}/collections/${id}`, false)
       return (await fetch(collectionUrl, {}, event)) as BgmtvCollection
     } catch (err) {
       console.error(err)
