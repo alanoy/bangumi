@@ -1,7 +1,11 @@
 export const useCover = (images: BgmImages, size = 'large') => {
   const placeholder = '/not-available.png'
-  const target = images?.[size as keyof BgmImages] || placeholder
+  let target = images?.[size as keyof BgmImages] || placeholder
   const suffix = target.split('.').pop()
+
+  if (target.indexOf('http://') === 0) {
+    target = target.replace('http://', 'https://')
+  }
 
   return {
     placeholder,
