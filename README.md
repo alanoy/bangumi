@@ -3,6 +3,8 @@
 [![Version](https://badge.fury.io/gh/alanoy%2Fbangumi.svg)](https://badge.fury.io/gh/alanoy%2Fbangumi)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 
+[Demo](https://bgm-demo.ideapart.com/)
+
 ### data sources:
 
 - [bangumi-data](https://github.com/bangumi-data/bangumi-data.git)
@@ -112,6 +114,7 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 5. Set copied `APP Secret` to `BGMTV_APP_SECRET` in `.env` file.
 6. Set copied `回调地址` to `BGMTV_REDIRECT_URI` in `.env` file.
 7. Set `BGMTV_USERAGENT` in `.env` file, more details [here](https://github.com/bangumi/api/blob/master/docs-raw/user%20agent.md).
+8. Set a 32-bit `NUXT_SESSION_SECRET` for session secret in `.env` file.
 
 checkout the [documentation](https://github.com/bangumi/api/blob/master/docs-raw/How-to-Auth.md) for more information.
 
