@@ -31,6 +31,10 @@
 - `appTitle`(optional): App title, default is `Bangumi`
 - `port`(optional): devServer port, default is `3000`
 
+### i18n
+
+Support `['zh-ch', 'en']`, defaults to `'zh-ch'`. Check out [@nuxtjs/i18n](https://i18n.nuxtjs.org/guide) for more details.
+
 ## Setup
 
 Make sure to install the dependencies:

@@ -43,6 +43,7 @@ export default defineNuxtConfig({
   i18n: {
     locales: ['zh-cn', 'en'],
     defaultLocale: 'zh-cn',
+    strategy: 'no_prefix',
   },
 
   devServer: { port },
