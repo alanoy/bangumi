@@ -4,9 +4,14 @@ const items = ref<BgmItem[]>([])
 const { date } = route.params as { date: string }
 const [year, quarterly] = date.split('-')
 const { data } = await useFetch(`/api/archive/${date}`)
+const { quarterToLocaleString } = useDate()
 
 useHead({
-  title: `${year}年${quarterly}月番组`,
+  title: quarterToLocaleString(Number(year), Number(quarterly)),
+})
+
+definePageMeta({
+  keepAlive: true,
 })
 
 if (data.value) {

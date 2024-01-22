@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { appTitle } = useRuntimeConfig().public
+const { setMetas } = useMetas()
+const { data } = await useFetch('/api/metas')
 
 // set document title
 useHead({
@@ -7,9 +9,6 @@ useHead({
     return productCategory ? `${productCategory} - ${appTitle}` : appTitle
   },
 })
-
-const { setMetas } = useMetas()
-const { data } = await useFetch('/api/metas')
 
 setMetas((data.value as { metas: BgmMeta })?.metas || {})
 </script>
@@ -24,6 +23,7 @@ setMetas((data.value as { metas: BgmMeta })?.metas || {})
     <LayoutHeader class="flex-none" />
     <NuxtPage class="md:p-5 sm:p-3 p-3 flex-auto" />
     <LayoutFooter class="flex-none" />
+    <Toast />
   </div>
 </template>
 

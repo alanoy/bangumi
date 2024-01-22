@@ -23,7 +23,7 @@ const bgmLink = computed(() => {
 
 <template>
   <p class="text-sm text-gray-500 flex">
-    <span class="flex-none whitespace-nowrap">资源:</span>
+    <span class="flex-none whitespace-nowrap">{{ $t('sources.label') }}:</span>
     <span class="flex-auto">
       <a
         :href="dmhy.link"

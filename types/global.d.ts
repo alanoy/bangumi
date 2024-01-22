@@ -13,7 +13,7 @@ interface BgmtvItem {
   name_cn: string
   summary?: string
   air_date: string
-  air_weekday: string | null
+  air_weekday?: string | null
   broadcast?: string
   rating: BgmRating | null
   rating_score?: number | null
@@ -22,13 +22,14 @@ interface BgmtvItem {
   eps_count?: number | null
   images: BgmImages
   collection?: BgmCollection
-  platform?: string | null // TV, Web, 欧美剧, PS4
+  platform?: string | null // TV, Web, PS4, etc...
   total_episodes?: number | null
   volumes?: number | null
   locked?: boolean | null
   nsfw?: boolean | null
   updated_at?: Date | null
-  title?: string | null // 请求错误时会返回 title
+  title?: string | null
+  collection_type?: number
 }
 
 interface BgmItem extends BgmtvItem {
@@ -43,9 +44,10 @@ interface BgmItem extends BgmtvItem {
 }
 
 interface BgmRating {
-  total: number
+  rank: number
+  total?: number
   score: number
-  count: {
+  count?: {
     [key: string]: number
   }
 }
@@ -90,4 +92,10 @@ interface ArchiveItem {
   items: {
     [key: string]: number
   }
+}
+
+interface ToastItem {
+  message: string
+  type: string
+  timeout?: number
 }

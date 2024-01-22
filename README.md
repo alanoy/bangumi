@@ -11,12 +11,12 @@
 ### frameworks:
 
 - [Nuxt3](https://nuxt.com/)
-- [vue3](https://vuejs.org/)
+- [Vue3](https://vuejs.org/)
 - [daisyUI](https://daisyui.com/)
 
 ### required:
 
-- nodejs 18+
+- nodejs v18+
 
 ## Configuration
 
@@ -27,7 +27,6 @@
 ### nuxt.config.ts:
 
 - `appTitle`(optional): App title, default is `Bangumi`
-- `socialMediaList`(optional): List of social medias, default is `[]`
 - `port`(optional): devServer port, default is `3000`
 
 ## Setup
@@ -104,6 +103,16 @@ bun run preview
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
-## TODO
+## Use bgm.tv app Authorization
 
-- [ ] Add item page: Explore more information about each individual item.
+1. Set `BGMTV_AUTHORIZE` to `'true'` in `.env` file, default is false.
+2. Create an app on [bgm.tv](https://bgm.tv/dev/app/create).
+3. Copy `App ID`, `APP Secret`, `回调地址` from your newly created application，`回调地址` should be `https://${your app baseURL}/auth/callback`
+4. Set copied `APP ID` to `BGMTV_APP_ID` in `.env` file.
+5. Set copied `APP Secret` to `BGMTV_APP_SECRET` in `.env` file.
+6. Set copied `回调地址` to `BGMTV_REDIRECT_URI` in `.env` file.
+7. Set `BGMTV_USERAGENT` in `.env` file, more details [here](https://github.com/bangumi/api/blob/master/docs-raw/user%20agent.md).
+
+checkout the [documentation](https://github.com/bangumi/api/blob/master/docs-raw/How-to-Auth.md) for more information.
+
+## TODO

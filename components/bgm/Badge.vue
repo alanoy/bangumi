@@ -3,6 +3,7 @@ const props = defineProps<{
   item: BgmItem
 }>()
 
+const { t } = useI18n()
 const formatNumber = (num: number) => {
   const str = num.toString()
   return str[1] ? str : '0' + str
@@ -32,15 +33,15 @@ const begin = computed(() => {
 
 const status = computed(() => {
   const { end, eps } = props.item
-  if (end) return '已结束'
+  if (end) return t('onAir.ended')
 
   if (begin.value.isBegin) {
-    let res = '放送中'
-    if (eps) res += `(共 ${eps} 话)`
+    let res = t('onAir.ongoing')
+    if (eps) res += `(${t('total.episodes')} ${eps})`
     return res
   }
 
-  return `${begin.value.date} 开始`
+  return `${begin.value.date}`
 })
 </script>
 
