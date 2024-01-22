@@ -1,5 +1,7 @@
+import type { BgmtvUser } from '@/types/bgmtv'
+
 export default defineNuxtRouteMiddleware(async () => {
-  const { setLogin, getUser } = useBgmtv()
+  const { setLogin } = useBgmtv()
   const { getSession, updateSession } = useH3Session()
 
   if (process.server) {
@@ -10,9 +12,10 @@ export default defineNuxtRouteMiddleware(async () => {
 
     if (data.access_token && !data.user) {
       // set user data to session
-      await getUser(async user => {
-        await updateSession(event, {}, { user })
-      })
+      const { data } = (await $fetch('/api/user')) as { data?: BgmtvUser }
+      if (data) {
+        await updateSession(event, {}, { user: data })
+      }
     }
   }
 })
