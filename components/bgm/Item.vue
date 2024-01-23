@@ -61,6 +61,13 @@ const showCollection = computed(() => {
 
   return id && title && titleTranslate
 })
+
+const isTooltip = ref(false)
+
+function onHoverTitle(e: Event) {
+  const target = e.target as HTMLElement
+  isTooltip.value = target.scrollHeight > target.clientHeight
+}
 </script>
 
 <template>
@@ -71,14 +78,23 @@ const showCollection = computed(() => {
     <BgmCover :item="item" />
 
     <div class="card-body p-3">
-      <h3
-        class="card-title text-base font-normal"
+      <div
+        class="text-left"
         :class="{
-          'mr-8': isLogin,
+          tooltip: isTooltip,
         }"
+        :data-tip="name"
       >
-        {{ name }}
-      </h3>
+        <h3
+          class="card-title text-base font-normal line-clamp-2"
+          :class="{
+            'mr-8': isLogin,
+          }"
+          @mouseover="onHoverTitle"
+        >
+          {{ name }}
+        </h3>
+      </div>
 
       <p
         v-if="item.sites && item.sites.length > 1"

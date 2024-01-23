@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  collectionType: number
+  collectionType: number | undefined
 }>()
 </script>
 
