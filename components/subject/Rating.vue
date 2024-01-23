@@ -33,7 +33,7 @@ async function onChange(i: number) {
   const { message } = (await setBgmtvCollections(props.id, { rate })) as { message: string }
 
   if (message === 'success') {
-    emits('rate-success', { type: getType('WATCHED') })
+    emits('rate-success', getType('WATCHED'))
   } else {
     updateToast({ message, type: 'error' })
   }
