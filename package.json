@@ -10,8 +10,8 @@
     "postinstall": "nuxt prepare",
     "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",
-    "lint": "pnpm run lint:js && pnpm run lint:prettier",
-    "lintfix": "prettier --write --list-different . && pnpm lint:js --fix"
+    "lint": "bun run lint:js && bun run lint:prettier",
+    "lintfix": "prettier --write --list-different . && bun lint:js --fix"
   },
   "devDependencies": {
     "@nuxtjs/color-mode": "^3.3.2",
@@ -19,8 +19,8 @@
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/i18n": "^8.0.0",
     "@nuxtjs/tailwindcss": "^6.10.4",
-    "@typescript-eslint/eslint-plugin": "^6.19.0",
-    "@typescript-eslint/parser": "^6.19.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
     "daisyui": "^4.6.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
