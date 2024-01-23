@@ -35,11 +35,11 @@ useHead({
           </li>
           <li>
             <a
-              href="http://bangumi.tv/"
+              href="http://bgm.tv/"
               rel="noreferrer"
               class="link"
             >
-              bangumi.tv
+              bgm.tv
             </a>
           </li>
         </ul>

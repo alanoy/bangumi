@@ -82,7 +82,7 @@ interface BgmMeta {
 
 interface BgmMetaItem {
   title: string
-  urlTemplate: string // example: 'https://bangumi.tv/subject/{{id}}'
+  urlTemplate: string // example: 'https://bgm.tv/subject/{{id}}'
   type: string // 'info' 信息网站, 'onair' 播放网站, 'resource' 下载网站
   regions?: string[]
 }

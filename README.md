@@ -8,7 +8,7 @@
 ### data sources:
 
 - [bangumi-data](https://github.com/bangumi-data/bangumi-data.git)
-- [番组计划](http://bangumi.tv/)
+- [番组计划](http://bgm.tv/)
 
 ### frameworks:
 
