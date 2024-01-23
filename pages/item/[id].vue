@@ -5,6 +5,7 @@ const route = useRoute()
 const { id } = route.params
 const subject = ref<BgmtvSubject | null>(null)
 const collection = ref<BgmtvCollection | null>(null)
+const collectionType = ref<number | undefined>(undefined)
 
 definePageMeta({
   middleware: ['is-expired'],
@@ -13,6 +14,14 @@ definePageMeta({
 function handleData(data: { subject: BgmtvSubject; collection: BgmtvCollection }) {
   subject.value = data.subject
   collection.value = data.collection
+
+  if (data.collection) {
+    collectionType.value = data.collection.type
+  }
+}
+
+function onRateSuccess(type: number) {
+  collectionType.value = type
 }
 
 const { data } = await useFetch(`/api/subject/${id}`)
@@ -46,12 +55,13 @@ if (data.value) {
               :id="subject.id"
               :rating="subject.rating"
               class="-ml-6"
+              @rate-success="onRateSuccess"
             />
           </div>
 
           <BgmCollection
             :item="subject"
-            :type="collection?.type"
+            :type="collectionType"
             show-text
             dropdown-align="start"
           />

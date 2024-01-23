@@ -10,7 +10,7 @@ export default defineEventHandler(async event => {
 
   // type: 1: 想看, 2: 看过, 3: 在看, 4: 搁置, 5: 抛弃
   // rate: 评分. minimum 0, maximum 10, 0 means delete
-  const { type, rate }: { type?: number; rate?: number } = getQuery(event)
+  const { type, rate }: { type?: number; rate?: number } = await readBody(event)
   const body: { type?: number; rate?: number; private: boolean } = { private: true }
 
   if (!isNaN(Number(rate))) {
