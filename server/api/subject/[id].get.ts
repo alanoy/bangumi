@@ -16,14 +16,14 @@ export default defineEventHandler(async event => {
   const auth = await getSession(event)
 
   async function getSubject() {
-    const subjectUrl = getUrl(`/v0/subjects/${id}`, false)
+    const subjectUrl = getUrl(`/v0/subjects/${id}`, { isMock: false })
     return (await fetch(subjectUrl, {}, event)) as BgmtvSubject
   }
 
   async function getCollection() {
     try {
       const { username } = auth.data.user
-      const collectionUrl = getUrl(`/v0/users/${username}/collections/${id}`, false)
+      const collectionUrl = getUrl(`/v0/users/${username}/collections/${id}`, { isMock: false })
       return (await fetch(collectionUrl, {}, event)) as BgmtvCollection
     } catch (err) {
       console.error(err)
@@ -31,10 +31,20 @@ export default defineEventHandler(async event => {
     }
   }
 
-  const [subject, collection] = await Promise.all([getSubject(), getCollection()])
+  try {
+    const [subject, collection] = await Promise.all([getSubject(), getCollection()])
 
-  return {
-    subject: subject as BgmtvSubject,
-    collection: collection as BgmtvCollection,
+    return {
+      subject: subject as BgmtvSubject,
+      collection: collection as BgmtvCollection,
+    }
+  } catch (err) {
+    console.log('get subject error::', err)
+    return {
+      error: createError({
+        statusCode: 500,
+        statusMessage: 'bgm.tv:: get subject failed',
+      }),
+    }
   }
 })

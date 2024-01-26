@@ -3,6 +3,7 @@ const route = useRoute()
 const items = ref<BgmItem[]>([])
 const keyword = ref<string>('')
 const { t } = useI18n()
+const error = ref<IError | undefined>(undefined)
 
 useHead({
   title: t('search'),
@@ -24,7 +25,13 @@ const { pending, data: searchResult } = await useAsyncData(
 watch(
   () => searchResult.value,
   (data: any) => {
-    items.value = data.items
+    if (data.items) {
+      items.value = data.items
+    }
+
+    if (data.error) {
+      error.value = data.error
+    }
   },
 )
 
@@ -35,12 +42,10 @@ if (route.params.keyword) {
 
 <template>
   <section>
-    <h3
+    <NoResult
       v-show="!pending && !items.length"
-      class="text-2xl p-5 text-neutral-500"
-    >
-      {{ $t('no-result') }}
-    </h3>
+      :error="error"
+    />
 
     <BgmList
       v-if="items.length"

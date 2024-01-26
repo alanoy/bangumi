@@ -51,12 +51,12 @@ async function changeCollection(type: number) {
     return
   }
 
-  const { message } = (await setBgmtvCollections(props.item.id, { type })) as { message: string }
+  const { message, error } = await setBgmtvCollections(props.item.id, { type })
 
   if (message === 'success') {
     collectionType.value = type
   } else {
-    updateToast({ message, type: 'error' })
+    updateToast({ message: error?.message || '', type: 'error' })
   }
 }
 

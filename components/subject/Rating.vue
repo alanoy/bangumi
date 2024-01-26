@@ -30,12 +30,12 @@ const { collecting, setBgmtvCollections, getType } = useCollections()
 async function onChange(i: number) {
   const rate = i + 1
   // rating action will set collection type to 'WATCHED'
-  const { message } = (await setBgmtvCollections(props.id, { rate })) as { message: string }
+  const { message, error } = await setBgmtvCollections(props.id, { rate })
 
   if (message === 'success') {
     emits('rate-success', getType('WATCHED'))
   } else {
-    updateToast({ message, type: 'error' })
+    updateToast({ message: error?.message || '', type: 'error' })
   }
 }
 </script>

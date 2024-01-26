@@ -17,6 +17,7 @@ const offset = ref(0)
 const limit = 30
 const localIds = ref('')
 const pending = ref(false)
+const error = ref<IError | undefined>(undefined)
 
 async function getBgmtvCollections() {
   pending.value = true
@@ -26,7 +27,7 @@ async function getBgmtvCollections() {
 
   pending.value = false
   if (data.value) {
-    const collections = data.value as { items?: BgmItem[]; total?: number }
+    const collections = data.value as { items?: BgmItem[]; total?: number; error: IError }
 
     if (collections?.items) {
       list.value = collections.items
@@ -93,12 +94,10 @@ async function onPageChange(page: number) {
 
 <template>
   <section>
-    <h3
+    <NoResult
       v-show="!pending && !list.length"
-      class="text-2xl p-5 text-neutral-500"
-    >
-      {{ $t('no-result') }}
-    </h3>
+      :error="error"
+    />
 
     <BgmList
       v-if="list.length"
@@ -107,7 +106,7 @@ async function onPageChange(page: number) {
 
     <div
       v-if="isLogin"
-      class="pagination mt-8 flex-auto flex items-center"
+      class="pagination mt-10 mb-3 flex-auto flex items-center"
     >
       <div class="mr-3">{{ $t('pagination') }}</div>
       <div class="join">

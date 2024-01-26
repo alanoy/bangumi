@@ -1,4 +1,4 @@
-import type { BgmtvAuthRequestBody, BgmtvAuthResponse, BgmtvUser } from '@/types/bgmtv'
+import type { BgmtvAuthRequestBody, BgmtvAuthResponse } from '@/types/bgmtv'
 
 export const useBgmtv = () => {
   const isLogin = useState(() => false)

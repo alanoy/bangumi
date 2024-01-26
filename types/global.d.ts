@@ -99,3 +99,10 @@ interface ToastItem {
   type: string
   timeout?: number
 }
+
+interface IError {
+  statusCode?: number
+  statusMessage?: string
+  message?: string
+  description?: string
+}

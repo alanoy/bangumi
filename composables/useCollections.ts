@@ -85,7 +85,13 @@ export const useCollections = () => {
     return `text-${status}`
   }
 
-  async function setBgmtvCollections(id: number, params: { type?: number; rate?: number }) {
+  async function setBgmtvCollections(
+    id: number,
+    params: { type?: number; rate?: number },
+  ): Promise<{
+    message?: string
+    error?: IError
+  }> {
     collecting.value = true
     const res = await $fetch(`/api/collections/${id}`, {
       method: 'POST',

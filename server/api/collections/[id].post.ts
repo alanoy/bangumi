@@ -21,7 +21,7 @@ export default defineEventHandler(async event => {
   }
 
   try {
-    const url = getUrl(`/v0/users/-/collections/${id}`, false)
+    const url = getUrl(`/v0/users/-/collections/${id}`, { isMock: false })
     await fetch(
       url,
       {
@@ -38,7 +38,12 @@ export default defineEventHandler(async event => {
       message: 'success',
     }
   } catch (error) {
-    console.error(error)
-    return { message: 'failed' }
+    console.error('update collection error::', error)
+    return {
+      error: createError({
+        statusCode: 500,
+        statusMessage: 'bgm.tv:: update collection error',
+      }),
+    }
   }
 })
