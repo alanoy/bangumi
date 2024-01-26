@@ -2,6 +2,7 @@
 const route = useRoute()
 const origin = ref<BgmItem[]>([]) // origin calendar items
 const list = ref<BgmItem[]>([]) // items to be displayed
+const error = ref<IError | undefined>(undefined)
 const today = new Date()
 const year = today.getFullYear()
 const weekday: ComputedRef<number> = computed(() => {
@@ -29,12 +30,18 @@ async function getCalendar() {
   const { data } = await useFetch('/api/calendar')
 
   if (!data.value) return
-  handleCalendar(data.value as { items: BgmItem[] })
+  handleCalendar(data.value as { items?: BgmItem[]; error?: IError })
 }
 
-function handleCalendar(data: { items: BgmItem[] }) {
-  origin.value = data.items
-  filterByWeekday(weekday.value, data.items)
+function handleCalendar(data: { items?: BgmItem[]; error?: IError }) {
+  if (data.items) {
+    origin.value = data.items
+    filterByWeekday(weekday.value, data.items)
+  }
+
+  if (data.error) {
+    error.value = data.error
+  }
 }
 
 await getCalendar()
@@ -49,6 +56,14 @@ await getCalendar()
       @filter="filterByWeekday"
     />
 
-    <BgmList :items="list" />
+    <BgmList
+      v-show="list.length"
+      :items="list"
+    />
+
+    <NoResult
+      v-show="error"
+      :error="error"
+    />
   </section>
 </template>

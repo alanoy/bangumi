@@ -6,17 +6,22 @@ const { id } = route.params
 const subject = ref<BgmtvSubject | null>(null)
 const collection = ref<BgmtvCollection | null>(null)
 const collectionType = ref<number | undefined>(undefined)
+const error = ref<IError | undefined>(undefined)
 
 definePageMeta({
   middleware: ['is-expired'],
 })
 
-function handleData(data: { subject: BgmtvSubject; collection: BgmtvCollection }) {
+function handleData(data: { subject: BgmtvSubject; collection: BgmtvCollection; error?: IError }) {
   subject.value = data.subject
   collection.value = data.collection
 
   if (data.collection) {
     collectionType.value = data.collection.type
+  }
+
+  if (data.error) {
+    error.value = data.error
   }
 }
 
@@ -27,7 +32,7 @@ function onRateSuccess(type: number) {
 const { data } = await useFetch(`/api/subject/${id}`)
 
 if (data.value) {
-  handleData(data.value as { subject: BgmtvSubject; collection: BgmtvCollection })
+  handleData(data.value as { subject: BgmtvSubject; collection: BgmtvCollection; error?: IError })
 }
 </script>
 
@@ -91,5 +96,10 @@ if (data.value) {
         </article>
       </div>
     </section>
+
+    <NoResult
+      v-if="error"
+      :error="error"
+    />
   </ClientOnly>
 </template>

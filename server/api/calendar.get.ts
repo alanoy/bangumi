@@ -8,7 +8,7 @@ const bgmItems = items as unknown as BgmItem[]
 export default defineEventHandler(async () => {
   const { fetch } = useBgmtvFetch()
 
-  async function getBgmtvCalendar(): Promise<BgmtvItem[]> {
+  async function getBgmtvCalendar(): Promise<{ items?: BgmtvItem[]; error?: IError }> {
     try {
       const data = (await fetch('/calendar')) as BgmtvCalendar[]
       let bgmtvItems: BgmtvItem[] = []
@@ -18,13 +18,18 @@ export default defineEventHandler(async () => {
       })
 
       const items = mergeBgmItems(bgmItems, bgmtvItems)
-      return items
+      return { items }
     } catch (err) {
-      console.error(err)
-      return []
+      console.error('/api/calendar error::', err)
+      return {
+        error: createError({
+          statusCode: 500,
+          statusMessage: 'bgm.tv:: get calendar failed',
+        }),
+      }
     }
   }
 
-  const items = await getBgmtvCalendar()
-  return { items }
+  const result = await getBgmtvCalendar()
+  return result
 })

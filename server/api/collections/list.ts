@@ -44,28 +44,25 @@ export default defineEventHandler(async event => {
     const auth = await getSession(event)
     const { username } = auth.data.user
     const res = (await fetch(
-      getUrl(`/v0/users/${username}/collections`, false),
+      getUrl(`/v0/users/${username}/collections`, { isMock: false }),
       {
         params: { limit, offset },
       },
       event,
     )) as { data: BgmtvCollection[]; limit: number; total: number }
 
-    if (res.data) {
-      return {
-        message: 'success',
-        items: mergeItems(res.data),
-        limit: res.limit,
-        total: res.total,
-      }
+    return {
+      items: mergeItems(res.data),
+      limit: res.limit,
+      total: res.total,
     }
-
-    return { message: 'failed' }
   } catch (err) {
-    console.error(err)
-    throw createError({
-      status: 400,
-      message: 'Failed to fetch bgm.tv collections',
-    })
+    console.error('get collections error::', err)
+    return {
+      error: createError({
+        statusCode: 500,
+        statusMessage: 'bgm.tv:: Failed to fetch collections',
+      }),
+    }
   }
 })

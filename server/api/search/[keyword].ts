@@ -7,9 +7,9 @@ const bgmItems = items as unknown as BgmItem[]
 export default defineEventHandler(async event => {
   const keyword = getRouterParam(event, 'keyword')
 
-  async function searchBgmtv(keyword = ''): Promise<BgmtvItem[]> {
+  async function searchBgmtv(keyword = ''): Promise<{ items?: BgmtvItem[]; error?: IError }> {
     if (!keyword) {
-      return []
+      return { items: [] }
     }
 
     const { fetch } = useBgmtvFetch()
@@ -24,15 +24,20 @@ export default defineEventHandler(async event => {
         },
       })) as { results: number; list: BgmtvItem[] }
 
-      if (!data?.list) return []
+      if (!data?.list) return { items: [] }
 
-      return mergeBgmItems(bgmItems, data.list)
+      return { items: mergeBgmItems(bgmItems, data.list) }
     } catch (err) {
-      console.error(err)
-      return []
+      console.error('search error::', err)
+      return {
+        error: createError({
+          statusCode: 500,
+          statusMessage: 'search error',
+        }),
+      }
     }
   }
 
-  const items = await searchBgmtv(keyword)
-  return { items }
+  const result = await searchBgmtv(keyword)
+  return result
 })

@@ -4,7 +4,8 @@ import { useH3Session } from './useSession'
 export const useBgmtvFetch = () => {
   const { bgmtv } = useRuntimeConfig().app
 
-  function getUrl(path: string, isMock = true) {
+  function getUrl(path: string, options?: { isMock: boolean }) {
+    const { isMock = true } = options || {}
     const { VITE_MOCK_BASEURL: mockBaseURL } = import.meta.env
     let baseUrl = 'https://api.bgm.tv'
 
