@@ -9,7 +9,7 @@ const { placeholder, target, type } = useCover(props.images, 'medium')
 <template>
   <figure class="bg-cover bg-top bg-no-repeat relative">
     <object
-      class="object-contain w-full rounded shadow-lg"
+      class="object-contain w-full rounded shadow-xl"
       :data="target"
       :type="type"
     >

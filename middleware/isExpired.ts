@@ -19,19 +19,18 @@ export default defineNuxtRouteMiddleware(async () => {
         refresh_token: status.refresh_token,
         redirect_uri: bgmtv.redirectURI,
       }
-      try {
-        const { data } = await authorize(params)
 
-        if (data?.access_token) {
-          await updateSession(event, { maxAge: data.expires_in }, data)
-          return navigateTo(event.path, { redirectCode: 301 })
-        }
-      } catch (error) {
-        throw createError({
-          statusCode: 400,
-          statusMessage: 'bgm.tv authorize failed',
-        })
+      const { data } = await authorize(params)
+
+      if (data?.access_token) {
+        await updateSession(event, { maxAge: data.expires_in }, data)
+        return navigateTo(event.path, { redirectCode: 301 })
       }
+
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'bgm.tv authorize failed',
+      })
     }
   }
 })
