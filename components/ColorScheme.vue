@@ -27,23 +27,26 @@ function onChangeTheme(name: string) {
         />
       </svg>
     </div>
-    <ul
-      class="dropdown-content z-[1] p-2 shadow-2xl bg-base-100 dark:bg-base-300 rounded-box w-auto"
-      tabindex="0"
-    >
-      <li
-        v-for="theme in appConfig.themes"
-        :key="theme"
+    <ClientOnly>
+      <ul
+        class="dropdown-content z-[1] p-2 shadow-2xl bg-base-200 rounded-box w-auto"
+        tabindex="0"
       >
-        <input
-          type="radio"
-          name="theme-dropdown"
-          class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-          :aria-label="theme"
-          :value="theme"
-          @change="onChangeTheme(theme)"
-        />
-      </li>
-    </ul>
+        <li
+          v-for="theme in appConfig.themes"
+          :key="theme"
+        >
+          <input
+            type="radio"
+            name="theme-dropdown"
+            class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+            :aria-label="theme"
+            :value="theme"
+            :checked="theme === colorMode.preference"
+            @change="onChangeTheme(theme)"
+          />
+        </li>
+      </ul>
+    </ClientOnly>
   </div>
 </template>

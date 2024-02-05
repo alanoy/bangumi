@@ -8,6 +8,7 @@ const props = withDefaults(
   },
 )
 
+const route = useRoute()
 const { t } = useI18n()
 const menus: NavbarMenu[] = [
   { title: t('collections.title'), route: '/collections' },
@@ -30,6 +31,8 @@ const classList = computed(() => {
   ul += ' flex items-center'
   return { parent, ul, li }
 })
+
+const activeRoute = computed(() => route.path)
 
 function closeDropdown() {
   const elem = document.activeElement as HTMLElement
@@ -66,13 +69,16 @@ function closeDropdown() {
       <li
         v-for="menu in menus"
         :key="menu.title"
-        :class="`${menu.classname} ${classList.li}`"
+        :class="`${menu.classname || ''} ${classList.li}`"
         @click="closeDropdown"
       >
         <NuxtLink
           :to="menu.route"
           no-rel
-          class="py-2"
+          class="py-2 mx-1"
+          :class="{
+            active: activeRoute === menu.route,
+          }"
         >
           <svg
             v-if="menu.icon === 'twitter'"
