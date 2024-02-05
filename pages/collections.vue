@@ -9,6 +9,7 @@ useHead({
 
 definePageMeta({
   keepAlive: true,
+  middleware: ['is-expired'],
 })
 
 const list = ref<BgmItem[]>([])
