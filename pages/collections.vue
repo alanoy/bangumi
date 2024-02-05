@@ -105,7 +105,7 @@ async function onPageChange(page: number) {
     />
 
     <div
-      v-if="isLogin"
+      v-if="isLogin && total > limit"
       class="pagination mt-10 mb-3 flex-auto flex items-center"
     >
       <div class="mr-3">{{ $t('pagination') }}</div>
