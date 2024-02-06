@@ -14,6 +14,7 @@
     "lintfix": "prettier --write --list-different . && bun lint:js --fix"
   },
   "devDependencies": {
+    "@nuxt/image": "latest",
     "@nuxtjs/color-mode": "^3.3.2",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/eslint-module": "^4.1.0",
