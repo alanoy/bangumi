@@ -8,7 +8,7 @@ const rating = computed(() => props.item.rating)
 </script>
 
 <template>
-  <div class="cover bg-cover bg-top bg-no-repeat relative bg-white top-0 left-0 bottom-0">
+  <figure class="cover bg-cover bg-top bg-no-repeat relative bg-white top-0 left-0 bottom-0">
     <NuxtImg
       :src="target"
       placeholder
@@ -24,7 +24,7 @@ const rating = computed(() => props.item.rating)
       {{ rating.score }}
       <template v-if="rating.total">/{{ rating.total }} {{ $t('votes') }}</template>
     </span>
-  </div>
+  </figure>
 </template>
 
 <style scoped>
