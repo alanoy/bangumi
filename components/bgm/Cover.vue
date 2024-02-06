@@ -11,7 +11,7 @@ const rating = computed(() => props.item.rating)
   <div class="cover bg-cover bg-top bg-no-repeat relative bg-white top-0 left-0 bottom-0">
     <NuxtImg
       :src="target"
-      :placeholder="placeholder"
+      placeholder
       loading="lazy"
       fit="cover"
       quality="80"
