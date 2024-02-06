@@ -15,7 +15,7 @@ const rating = computed(() => props.item.rating)
       loading="lazy"
       fit="cover"
       quality="80"
-      class="h-full"
+      class="object-cover h-full"
     />
     <span
       v-if="rating && rating.score > 0"
