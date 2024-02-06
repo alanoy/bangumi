@@ -3,20 +3,18 @@ const props = defineProps<{
   images: BgmImages
 }>()
 
-const { placeholder, target, type } = useCover(props.images, 'medium')
+const { placeholder, target } = useCover(props.images, 'medium')
 </script>
 
 <template>
-  <figure class="bg-cover bg-top bg-no-repeat relative">
-    <object
-      class="object-contain w-full rounded shadow-xl"
-      :data="target"
-      :type="type"
-    >
-      <img
-        class="object-contain"
-        :src="placeholder"
-      />
-    </object>
-  </figure>
+  <div class="bg-cover bg-top bg-no-repeat relative">
+    <NuxtImg
+      :src="target"
+      :placeholder="placeholder"
+      loading="lazy"
+      fit="contain"
+      quality="80"
+      class="h-full"
+    />
+  </div>
 </template>

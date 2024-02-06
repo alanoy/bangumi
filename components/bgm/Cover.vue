@@ -3,22 +3,20 @@ const props = defineProps<{
   item: BgmItem
 }>()
 
-const { placeholder, target, type } = useCover(props.item.images)
+const { placeholder, target } = useCover(props.item.images)
 const rating = computed(() => props.item.rating)
 </script>
 
 <template>
-  <figure class="cover bg-cover bg-top bg-no-repeat relative bg-white top-0 left-0 bottom-0">
-    <object
-      class="object-cover h-full"
-      :data="target"
-      :type="type"
-    >
-      <img
-        class="object-cover h-full"
-        :src="placeholder"
-      />
-    </object>
+  <div class="cover bg-cover bg-top bg-no-repeat relative bg-white top-0 left-0 bottom-0">
+    <NuxtImg
+      :src="target"
+      :placeholder="placeholder"
+      loading="lazy"
+      fit="cover"
+      quality="80"
+      class="h-full"
+    />
     <span
       v-if="rating && rating.score > 0"
       class="absolute glass w-full left-0 bottom-0 h-6 text-xs text-center bg-black/[0.1] text-white py-1 whitespace-nowrap"
@@ -26,7 +24,7 @@ const rating = computed(() => props.item.rating)
       {{ rating.score }}
       <template v-if="rating.total">/{{ rating.total }} {{ $t('votes') }}</template>
     </span>
-  </figure>
+  </div>
 </template>
 
 <style scoped>
