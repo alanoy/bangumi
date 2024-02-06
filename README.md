@@ -24,7 +24,7 @@
 
 ### config.ts:
 
-- `themes`(optional): daisyui themes for ColorScheme, default is `['fantasy', 'light', 'dark']`.
+- `themes`(optional): daisyui themes for ColorScheme, default is `['fantasy', 'light', 'cupcake', 'dark', 'dracula', 'sunset', 'dim']`.
 
 ### nuxt.config.ts:
 
