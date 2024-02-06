@@ -14,7 +14,7 @@ const { target } = useCover(props.images, 'medium')
       loading="lazy"
       fit="contain"
       quality="80"
-      class="object-contain h-full"
+      class="object-contain"
     />
   </figure>
 </template>
