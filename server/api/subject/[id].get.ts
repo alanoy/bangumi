@@ -14,6 +14,16 @@ export default defineEventHandler(async event => {
 
   const { getSession } = useH3Session()
   const auth = await getSession(event)
+  const { user } = auth.data
+
+  if (!user) {
+    return {
+      error: createError({
+        statusCode: 401,
+        statusMessage: 'bgm.tv:: login required',
+      }),
+    }
+  }
 
   async function getSubject() {
     const subjectUrl = getUrl(`/v0/subjects/${id}`, { isMock: false })
@@ -22,7 +32,7 @@ export default defineEventHandler(async event => {
 
   async function getCollection() {
     try {
-      const { username } = auth.data.user
+      const { username } = user
       const collectionUrl = getUrl(`/v0/users/${username}/collections/${id}`, { isMock: false })
       return (await fetch(collectionUrl, {}, event)) as BgmtvCollection
     } catch (err) {
