@@ -110,9 +110,9 @@ function closeDropdown() {
           <template v-else>{{ menu.title }}</template>
         </NuxtLink>
       </li>
-      <li class="inline-flex md:hidden">
+      <li :class="`md:hidden ${classList.li}`">
         <User
-          class-list=""
+          class-list="mx-1"
           :show-icon="false"
           button-class="p-0 hover:bg-transparent"
         />
