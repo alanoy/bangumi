@@ -14,6 +14,7 @@ const props = withDefaults(
   },
 )
 
+const i18n = useI18n()
 const { updateToast } = useToast()
 const { getTypeText, getLocalCollections, setLocalCollections, collecting, setBgmtvCollections } =
   useCollections()
@@ -141,7 +142,7 @@ if (process.client) {
       <ul
         v-if="isLogin"
         tabindex="0"
-        class="dropdown-content z-[1] menu p-2 shadow-xl bg-base-100 dark:bag-base-300 rounded-box w-28 mt-1"
+        :class="`dropdown-content z-[1] menu p-2 shadow-xl bg-base-100 dark:bag-base-300 rounded-box mt-1 ${i18n.locale.value === 'zh-cn' ? 'w-28' : 'w-38'}`"
       >
         <li
           v-for="t in [1, 2, 3, 4, 5]"

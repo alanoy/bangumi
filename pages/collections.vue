@@ -94,7 +94,7 @@ async function onPageChange(page: number) {
 </script>
 
 <template>
-  <section>
+  <section class="overflow-hidden">
     <NoResult
       v-show="!pending && !list.length"
       :error="error"
