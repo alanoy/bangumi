@@ -3,6 +3,7 @@ const props = defineProps<{
   item: BgmItem
 }>()
 
+const week = useWeek()
 const { metas } = useMetas()
 const { isLogin } = useBgmtv()
 const info = reactive<BgmMeta>({})
@@ -23,7 +24,6 @@ Object.keys(metas.value).forEach(key => {
 })
 
 const weekday = computed(() => {
-  const week = useWeek()
   const { item } = props
   const date = new Date(item.air_date || item.begin || '')
   return week.value[date.getDay() + 1]

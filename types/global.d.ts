@@ -18,8 +18,10 @@ interface BgmtvItem {
   rating: BgmRating | null
   rating_score?: number | null
   rank?: number | null
+  score?: number | null
   eps?: number | null
   eps_count?: number | null
+  image?: string
   images: BgmImages
   collection?: BgmCollection
   platform?: string | null // TV, Web, PS4, etc...
