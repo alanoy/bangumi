@@ -113,7 +113,7 @@ function closeDropdown() {
       </li>
       <li :class="`md:hidden ${classList.li}`">
         <User
-          class-list="mx-0.5"
+          class-list="mx-0.5 whitespace-nowrap"
           :show-icon="false"
           button-class="p-0 hover:bg-transparent"
         />
