@@ -76,7 +76,7 @@ function closeDropdown() {
         <NuxtLink
           :to="menu.route"
           no-rel
-          class="py-2 mx-0.5"
+          class="py-2 mx-0.5 whitespace-nowrap"
           :class="{
             active: activeRoute === menu.route,
           }"

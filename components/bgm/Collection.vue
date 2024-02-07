@@ -149,6 +149,7 @@ if (process.client) {
           @click="changeCollection(t)"
         >
           <a
+            class="whitespace-nowrap"
             :class="{
               'bg-base-300': t === collectionType,
             }"

@@ -36,13 +36,11 @@ watch(response, (value: any) => {
   window.scrollTo({ top: 0 })
 })
 
-onMounted(() => {
-  offset.value = 0
-})
-
 function onPageChange(page: number) {
   offset.value = (page - 1) * limit
 }
+
+offset.value = 0
 </script>
 
 <template>
