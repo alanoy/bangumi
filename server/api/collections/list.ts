@@ -37,14 +37,14 @@ function mergeItems(collections: BgmtvCollection[]) {
 
 export default defineEventHandler(async event => {
   const { limit, offset } = getQuery(event)
-  const { getUrl, fetch } = useBgmtvFetch()
+  const { fetch } = useBgmtvFetch()
   const { getSession } = useH3Session()
 
   try {
     const auth = await getSession(event)
     const { username } = auth.data.user
     const res = (await fetch(
-      getUrl(`/v0/users/${username}/collections`, { isMock: false }),
+      `/v0/users/${username}/collections`,
       {
         params: { limit, offset },
       },

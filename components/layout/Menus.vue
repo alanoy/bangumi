@@ -12,6 +12,7 @@ const route = useRoute()
 const { t } = useI18n()
 const menus: NavbarMenu[] = [
   { title: t('collections.title'), route: '/collections' },
+  { title: t('ranking'), route: '/ranking' },
   { title: t('archives'), route: '/archives' },
   { title: t('about'), route: '/about' },
 ]
@@ -24,7 +25,7 @@ const classList = computed(() => {
   if (props.isDropdown) {
     parent = 'dropdown'
     ul =
-      'menu menu-sm dropdown-content z-[1] p-2 shadow-xl bg-base-100 dark:bg-base-300 rounded-box w-32 flex-column'
+      'menu menu-sm dropdown-content z-[1] p-2 shadow-2xl bg-base-100 dark:bg-base-200 rounded-box w-auto flex-column'
     li = 'basis-full w-full'
   }
 
@@ -75,7 +76,7 @@ function closeDropdown() {
         <NuxtLink
           :to="menu.route"
           no-rel
-          class="py-2 mx-1"
+          class="py-2 mx-0.5"
           :class="{
             active: activeRoute === menu.route,
           }"
@@ -112,7 +113,7 @@ function closeDropdown() {
       </li>
       <li :class="`md:hidden ${classList.li}`">
         <User
-          class-list="mx-1"
+          class-list="mx-0.5"
           :show-icon="false"
           button-class="p-0 hover:bg-transparent"
         />

@@ -15,7 +15,7 @@ definePageMeta({
 const list = ref<BgmItem[]>([])
 const total = ref(0)
 const offset = ref(0)
-const limit = 30
+const limit = 20
 const localIds = ref('')
 const pending = ref(false)
 const error = ref<IError | undefined>(undefined)
@@ -84,12 +84,9 @@ if (isLogin.value) {
 }
 
 async function onPageChange(page: number) {
-  if (page === offset.value + 1 || pending.value) {
-    return
-  }
-
-  offset.value = page - 1
+  offset.value = (page - 1) * limit
   await getBgmtvCollections()
+  window.scrollTo({ top: 0 })
 }
 </script>
 
@@ -105,28 +102,12 @@ async function onPageChange(page: number) {
       :items="list"
     />
 
-    <div
-      v-if="isLogin && total > limit"
-      class="pagination mt-10 mb-3 flex-auto flex items-center"
-    >
-      <div class="mr-3">{{ $t('pagination') }}</div>
-      <div class="join">
-        <button
-          v-for="page in Math.ceil(total / limit)"
-          :key="page"
-          class="join-item btn btn-sm"
-          :class="{
-            'btn-active': offset === page - 1,
-          }"
-          @click="onPageChange(page)"
-        >
-          <span
-            v-show="pending && offset === page - 1"
-            class="loading loading-ring loading-sm"
-          />
-          {{ page }}
-        </button>
-      </div>
-    </div>
+    <Pagination
+      v-if="isLogin"
+      :total="total"
+      :limit="limit"
+      :pending="pending"
+      @change="onPageChange"
+    />
   </section>
 </template>
