@@ -1,6 +1,6 @@
 # Bangumi List
 
-[![Version](https://badge.fury.io/gh/alanoy%2Fbangumi.svg)](https://badge.fury.io/gh/alanoy%2Fbangumi)
+![Version](https://img.shields.io/github/package-json/v/alanoy/bangumi?style=flat)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 
 [Demo](https://bgm-demo.ideapart.com/)
