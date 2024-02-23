@@ -3,10 +3,9 @@ import type { BgmtvAuthRequestBody, BgmtvAuthResponse } from '@/types/bgmtv'
 export const useBgmtv = () => {
   const isLogin = useState(() => false)
 
-  async function authorize(
-    params: BgmtvAuthRequestBody,
-  ): Promise<{ message: string; data?: BgmtvAuthResponse }> {
-    const res = await $fetch('/api/authorize', {
+  async function authorize(params: BgmtvAuthRequestBody) {
+    params.state = Date.now()
+    const res = await $fetch<{ message: string; data?: BgmtvAuthResponse }>('/api/authorize', {
       method: 'POST',
       body: params,
     })

@@ -38,7 +38,8 @@ export default defineEventHandler(async event => {
       message: 'success',
     }
   } catch (error) {
-    console.error('update collection error::', error)
+    // console.error('update collection error::', error)
+
     return {
       error: createError({
         statusCode: 500,

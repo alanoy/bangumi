@@ -43,7 +43,8 @@ export const useH3Session = () => {
     const { createdAt, data } = await get(event)
     const expiresIn = data.expires_in
 
-    console.log('isExpired', data)
+    // console.log('isExpired', data)
+
     if (expiresIn) {
       return {
         isExpired: (Date.now() - Number(createdAt)) / 1000 > expiresIn,

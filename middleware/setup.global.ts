@@ -10,6 +10,8 @@ export default defineNuxtRouteMiddleware(async () => {
     const event = useRequestEvent()
     const { data } = await getSession(event)
 
+    // console.info('bgm.tv auth session', data)
+
     setLogin(!!data.access_token)
 
     if (data.access_token && !data.user) {
