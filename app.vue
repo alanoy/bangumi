@@ -21,7 +21,7 @@ setMetas((data.value as { metas: BgmMeta })?.metas || {})
       color="repeating-linear-gradient(to right,#da5597 0%,#9d59ef 50%,#6466e9 100%)"
     />
     <LayoutHeader />
-    <div class="md:p-5 sm:p-3 p-3 flex-auto grow">
+    <div class="md:p-5 sm:p-3 p-3 flex-auto grow overflow-hidden">
       <NuxtPage />
     </div>
     <LayoutFooter />

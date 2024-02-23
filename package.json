@@ -1,6 +1,6 @@
 {
   "name": "bangumi",
-  "version": "5.1.12",
+  "version": "5.1.13",
   "type": "module",
   "scripts": {
     "build": "nuxt build",
