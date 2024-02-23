@@ -30,7 +30,7 @@ const rating = computed(() => {
     />
     <span
       v-if="rating && rating?.score > 0"
-      class="absolute glass w-full left-0 bottom-0 h-6 text-xs text-center bg-black/[0.1] text-white py-1 whitespace-nowrap"
+      class="absolute glass w-full left-0 bottom-0 h-6 text-xs text-center text-white py-1 whitespace-nowrap"
     >
       <span
         v-if="rating.rank > 0"

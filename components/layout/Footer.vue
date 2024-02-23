@@ -6,8 +6,8 @@ const currentYear = new Date().getFullYear()
   <footer class="footer items-center p-4 bg-base-200 text-base-content">
     <aside class="items-center grid-flow-col">
       <svg
-        width="28"
-        height="28"
+        width="16"
+        height="16"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
         fill-rule="evenodd"

@@ -29,7 +29,7 @@ function onChangeTheme(name: string) {
     </div>
     <ClientOnly>
       <ul
-        class="dropdown-content z-[1] p-2 shadow-2xl bg-base-200 rounded-box w-auto"
+        class="dropdown-content z-[1] p-2 shadow-2xl bg-base-200 rounded-box w-auto mt-3"
         tabindex="0"
       >
         <li
