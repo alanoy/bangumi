@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import BluredColorfulText from '../BluredColorfulText.vue'
+
 const { appTitle } = useRuntimeConfig().public
 const route = useRoute()
 const active = ref(route.name)
@@ -14,11 +16,12 @@ watch(
     <div class="navbar-start">
       <LayoutMenus is-dropdown />
       <NuxtLink
-        class="btn btn-ghost text-primary hover:text-primary-content hover:bg-primary text-xl md:text-2xl"
+        class="text-primary hover:text-primary/80 text-xl md:text-2xl font-bold"
         to="/"
         :title="appTitle"
       >
-        <h1>{{ appTitle }}</h1>
+        <!-- <h1>{{ appTitle }}</h1> -->
+        <BluredColorfulText :text="appTitle" />
       </NuxtLink>
     </div>
 
