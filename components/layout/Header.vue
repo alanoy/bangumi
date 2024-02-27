@@ -16,7 +16,7 @@ watch(
     <div class="navbar-start">
       <LayoutMenus is-dropdown />
       <NuxtLink
-        class="text-primary hover:text-primary/80 text-xl md:text-2xl font-bold"
+        class="text-primary hover:text-primary/80 text-2xl font-bold"
         to="/"
         :title="appTitle"
       >
