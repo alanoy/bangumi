@@ -36,6 +36,6 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "bangumi-data": "^0.3.130"
+    "bangumi-data": "latest"
   }
 }
