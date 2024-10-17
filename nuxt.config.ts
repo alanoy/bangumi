@@ -44,6 +44,7 @@ export default defineNuxtConfig({
     locales: ['zh-cn', 'en'],
     defaultLocale: 'zh-cn',
     strategy: 'no_prefix',
+    detectBrowserLanguage: false,
   },
 
   devServer: { port },
@@ -67,3 +68,4 @@ export default defineNuxtConfig({
     // '/item/*': { swr: true },
   },
 })
+
