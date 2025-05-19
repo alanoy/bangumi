@@ -4,9 +4,11 @@ const props = defineProps<{
   quarterly?: number
   total: number
   currentWeekday?: number
+  sortBy?: string
+  sortOptions?: { value: string; label: string }[]
 }>()
 
-const emits = defineEmits(['filter'])
+const emits = defineEmits(['filter', 'update:sortBy'])
 const route = useRoute()
 const router = useRouter()
 const week = useWeek()
@@ -73,5 +75,20 @@ function onChangeWeekday(index: number) {
         </li>
       </ul>
     </div>
+
+    <select
+      v-if="isArchive && sortBy !== undefined && sortOptions?.length"
+      :value="sortBy"
+      class="select select-sm select-bordered ml-5"
+      @change="$emit('update:sortBy', ($event.target as HTMLSelectElement).value)"
+    >
+      <option
+        v-for="option in sortOptions"
+        :key="option.value"
+        :value="option.value"
+      >
+        {{ $t(option.label) }}
+      </option>
+    </select>
   </nav>
 </template>

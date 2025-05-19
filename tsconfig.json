@@ -4,5 +4,5 @@
   "include": ["env.d.ts", ".nuxt/nuxt.d.ts", "**/*"],
   "compilerOptions": {
     "typeRoots": ["./types"]
-  },
+  }
 }
