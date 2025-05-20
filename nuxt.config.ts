@@ -41,6 +41,7 @@ export default defineNuxtConfig({
   },
 
   i18n: {
+    vueI18n: path.resolve('./i18n.config.ts'),
     locales: ['zh-cn', 'en'],
     defaultLocale: 'zh-cn',
     strategy: 'no_prefix',
@@ -68,4 +69,3 @@ export default defineNuxtConfig({
     // '/item/*': { swr: true },
   },
 })
-

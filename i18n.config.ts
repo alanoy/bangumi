@@ -42,6 +42,11 @@ export default defineI18nConfig(() => ({
           5: '抛弃',
         },
       },
+
+      sortOptions: {
+        votes: '票数',
+        score: '评分',
+      },
     },
     en: {
       archives: 'Archives',
