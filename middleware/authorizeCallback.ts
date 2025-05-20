@@ -14,12 +14,12 @@ export default defineNuxtRouteMiddleware(async to => {
     state: state as string,
   }
 
-  if (process.server && code) {
+  if (import.meta.server && code) {
     const event = useRequestEvent()
     const { message, data } = await authorize(body)
 
     if (message === 'success' && data?.access_token) {
-      await updateSession(event, { maxAge: data.expires_in }, data)
+      await updateSession(event!, { maxAge: data.expires_in }, data)
       return navigateTo('/', { redirectCode: 301 })
     }
   }

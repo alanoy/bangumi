@@ -6,9 +6,9 @@ export default defineNuxtRouteMiddleware(async () => {
   const { authorize } = useBgmtv()
   const { updateSession, clearSession, isExpired } = useH3Session()
 
-  if (process.server) {
+  if (import.meta.server) {
     const event = useRequestEvent()
-    const status = await isExpired(event)
+    const status = await isExpired(event!)
 
     if (status.isExpired) {
       // console.warn('bgm.tv session expired')
@@ -26,12 +26,12 @@ export default defineNuxtRouteMiddleware(async () => {
       // console.log('refresh bgm.tv token', data)
 
       if (data?.access_token) {
-        await updateSession(event, { maxAge: data.expires_in }, data)
-        return navigateTo(event.path, { redirectCode: 301 })
+        await updateSession(event!, { maxAge: data.expires_in }, data)
+        return navigateTo(event!.path, { redirectCode: 301 })
       }
 
       if (message.includes('token has expired')) {
-        await clearSession(event)
+        await clearSession(event!)
         return navigateTo('/auth/bgmtv', { redirectCode: 301 })
       }
 

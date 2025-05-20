@@ -3,7 +3,7 @@ const { toasts } = useToast()
 </script>
 
 <template>
-  <div class="toast toast-top toast-center z-[99999]">
+  <div class="toast toast-top toast-center z-99999">
     <div
       v-for="(toast, prop) in toasts"
       :key="prop"

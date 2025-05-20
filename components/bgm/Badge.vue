@@ -48,7 +48,7 @@ const status = computed(() => {
 <template>
   <div
     v-if="begin.date"
-    class="opacity-80 badge badge-outline"
+    class="opacity-80 badge badge-soft"
     :class="`${
       item.end ? 'badge-ghost text-ghost-content' : 'badge-secondary text-secondary-content'
     }`"

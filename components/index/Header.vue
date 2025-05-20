@@ -62,7 +62,7 @@ function onChangeWeekday(index: number) {
       </div>
       <ul
         tabindex="0"
-        class="dropdown-content z-[1] menu p-2 shadow-2xl bg-base-100 dark:bg-base-300 rounded-box w-22"
+        class="dropdown-content z-1 menu p-2 shadow-2xl bg-base-100 dark:bg-base-300 rounded-box w-22"
       >
         <li
           v-for="(item, index) in week"
@@ -79,7 +79,7 @@ function onChangeWeekday(index: number) {
     <select
       v-if="isArchive && sortBy !== undefined && sortOptions?.length"
       :value="sortBy"
-      class="select select-sm select-bordered ml-5"
+      class="select select-sm select-bordered ml-5 w-[90px]"
       @change="$emit('update:sortBy', ($event.target as HTMLSelectElement).value)"
     >
       <option
