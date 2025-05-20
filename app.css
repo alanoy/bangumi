@@ -1,4 +1,13 @@
 @import 'tailwindcss';
+
 @plugin 'daisyui' {
-  themes: fantasy --default, dark --prefersdark, light, cupcake, dracula, sunset, dim;
+  root: ':root';
+  themes:
+    fantasy --default,
+    dark --prefersdark,
+    light,
+    cupcake,
+    dracula,
+    sunset,
+    dim;
 }

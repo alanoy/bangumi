@@ -12,7 +12,7 @@ watch(
 </script>
 
 <template>
-  <nav class="navbar sticky top-0 z-50 bg-base-100 px-3 sm:px-5 shadow-sm">
+  <nav class="navbar sticky top-0 z-50 bg-base-100 px-3 sm:px-5 shadow-xs">
     <div class="navbar-start">
       <LayoutMenus is-dropdown />
       <NuxtLink

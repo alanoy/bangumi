@@ -6,9 +6,9 @@ export default defineNuxtRouteMiddleware(async () => {
   const { getSession, updateSession } = useH3Session()
   const { fetch } = useBgmtvFetch()
 
-  if (process.server) {
+  if (import.meta.server) {
     const event = useRequestEvent()
-    const { data } = await getSession(event)
+    const { data } = await getSession(event!)
 
     // console.info('bgm.tv auth session', data)
 
@@ -19,7 +19,7 @@ export default defineNuxtRouteMiddleware(async () => {
       const data = (await fetch('/v0/me', {}, event)) as BgmtvUser
 
       if (data) {
-        await updateSession(event, {}, { user: data })
+        await updateSession(event!, {}, { user: data })
       }
     }
   }

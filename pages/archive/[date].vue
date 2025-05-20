@@ -50,17 +50,15 @@ const sortOptions = [
 </script>
 
 <template>
-  <div>
-    <section class="flex items-center gap-2 mb-4">
-      <IndexHeader
-        v-model:sort-by="sortBy"
-        :total="items.length"
-        :year="Number(year)"
-        :quarterly="Number(quarterly)"
-        :sort-options="sortOptions"
-      />
-    </section>
+  <section>
+    <IndexHeader
+      v-model:sort-by="sortBy"
+      :total="items.length"
+      :year="Number(year)"
+      :quarterly="Number(quarterly)"
+      :sort-options="sortOptions"
+    />
 
     <BgmList :items="sortedItems" />
-  </div>
+  </section>
 </template>

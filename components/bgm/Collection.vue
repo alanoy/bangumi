@@ -115,10 +115,8 @@ if (process.client) {
 
         <BgmCollectionStatusIcon :collection-type="collectionType" />
         <span
-          class="inline-flex rounded-full z-[100] absolute bg-base-100 w-[24px] h-[24px] top-[-2px] left-[-2px] justify-center"
-          :class="{
-            hidden: !collecting,
-          }"
+          class="inline-flex rounded-full z-100 absolute bg-base-100 w-[24px] h-[24px] top-[-2px] left-[-2px] justify-center"
+          :class="`${!collecting ? 'hidden!' : ''}`"
         >
           <span
             class="loading loading-spinner loading-sm"
@@ -141,7 +139,7 @@ if (process.client) {
       <ul
         v-if="isLogin"
         tabindex="0"
-        class="dropdown-content z-[1] menu p-2 shadow-xl bg-base-100 dark:bag-base-300 rounded-box mt-1 w-auto"
+        class="dropdown-content z-1 menu p-2 shadow-xl bg-base-100 dark:bag-base-300 rounded-box mt-1 w-auto"
       >
         <li
           v-for="t in [1, 2, 3, 4, 5]"

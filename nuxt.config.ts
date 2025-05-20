@@ -1,5 +1,6 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 import path from 'path'
+import { defineNuxtConfig } from 'nuxt/config'
+import tailwindcss from '@tailwindcss/vite'
 
 // ========== custom config ==========
 const appTitle = 'Bangumi'
@@ -22,7 +23,6 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
-          hid: 'description',
           name: 'description',
           content: '番组, bangumi, 动漫',
         },
@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxtjs/i18n', '@nuxtjs/tailwindcss', '@nuxtjs/color-mode', '@nuxt/image'],
+  modules: ['@nuxtjs/i18n', '@nuxtjs/color-mode', '@nuxt/image'],
 
   colorMode: {
     preference: 'fantasy', // default theme
@@ -68,4 +68,10 @@ export default defineNuxtConfig({
   routeRules: {
     // '/item/*': { swr: true },
   },
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
+
+  compatibilityDate: '2025-05-20',
 })
