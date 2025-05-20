@@ -28,3 +28,7 @@ setMetas((data.value as { metas: BgmMeta })?.metas || {})
     <Toast />
   </div>
 </template>
+
+<style>
+@import './app.css';
+</style>
