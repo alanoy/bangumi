@@ -25,10 +25,12 @@ const begin = computed(() => {
   const currentTime = Date.now()
   const isBegin = currentTime >= date.getTime()
 
-  return {
-    isBegin,
-    date: `${year}/${month}/${day}`,
-  }
+  return year && month && day
+    ? {
+        isBegin,
+        date: `${year}/${month}/${day}`,
+      }
+    : {}
 })
 
 const status = computed(() => {
@@ -48,7 +50,7 @@ const status = computed(() => {
 <template>
   <div
     v-if="begin.date"
-    class="opacity-80 badge badge-outline"
+    class="opacity-80 badge badge-soft"
     :class="`${item.end ? 'badge-ghost' : 'badge-secondary'}`"
   >
     {{ status }}
