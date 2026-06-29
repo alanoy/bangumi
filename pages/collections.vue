@@ -23,18 +23,24 @@ const error = ref<IError | undefined>(undefined)
 async function getBgmtvCollections() {
   pending.value = true
   const { data } = await useFetch('/api/collections/list', {
+    server: false,
     params: { limit, offset: offset.value },
   })
 
-  pending.value = false
-  if (data.value) {
-    const collections = data.value as { items?: BgmItem[]; total?: number; error: IError }
+  watch(
+    data,
+    value => {
+      if (!value) return
+      pending.value = false
+      const collections = value as { items?: BgmItem[]; total?: number; error: IError }
 
-    if (collections?.items) {
-      list.value = collections.items
-      total.value = collections.total || 0
-    }
-  }
+      if (collections?.items) {
+        list.value = collections.items
+        total.value = collections.total || 0
+      }
+    },
+    { immediate: true },
+  )
 }
 
 if (isLogin.value) {

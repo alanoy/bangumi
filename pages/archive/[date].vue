@@ -3,7 +3,7 @@ const route = useRoute()
 const items = ref<BgmItem[]>([])
 const { date } = route.params as { date: string }
 const [year, quarterly] = date.split('-')
-const { data } = await useFetch(`/api/archive/${date}`)
+const { data } = await useFetch(`/api/archive/${date}`, { server: false })
 const { quarterToLocaleString } = useDate()
 const sortBy = ref<'score' | 'votes'>('votes')
 
@@ -15,9 +15,15 @@ definePageMeta({
   keepAlive: true,
 })
 
-if (data.value) {
-  handleData(data.value as { items: BgmItem[] })
-}
+watch(
+  data,
+  value => {
+    if (value) {
+      handleData(value as { items: BgmItem[] })
+    }
+  },
+  { immediate: true },
+)
 
 function handleData(data: { items: BgmItem[] }) {
   items.value = data.items

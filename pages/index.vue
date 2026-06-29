@@ -26,12 +26,18 @@ function filterByWeekday(weekdayNumber: number, items: BgmItem[] = origin.value)
   })
 }
 
-async function getCalendar() {
-  const { data } = await useFetch('/api/calendar')
+const { data: calendar } = await useFetch('/api/calendar', {
+  server: false,
+})
 
-  if (!data.value) return
-  handleCalendar(data.value as { items?: BgmItem[]; error?: IError })
-}
+watch(
+  calendar,
+  value => {
+    if (!value) return
+    handleCalendar(value as { items?: BgmItem[]; error?: IError })
+  },
+  { immediate: true },
+)
 
 function handleCalendar(data: { items?: BgmItem[]; error?: IError }) {
   if (data.items) {
@@ -43,8 +49,6 @@ function handleCalendar(data: { items?: BgmItem[]; error?: IError }) {
     error.value = data.error
   }
 }
-
-await getCalendar()
 </script>
 
 <template>

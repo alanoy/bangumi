@@ -33,6 +33,7 @@ export const useBgmtvFetch = () => {
     }
 
     return await $fetch(url, {
+      timeout: 8000,
       headers,
       ...(restOptions || {}),
     })
