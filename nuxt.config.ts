@@ -66,7 +66,12 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    // '/item/*': { swr: true },
+    // Public, session-independent GET routes backed by (slow) bgm.tv calls.
+    // Cache 1 day so repeat visits are instant and the serverless function rarely
+    // re-runs the bgm.tv work. First visit per route still computes cold.
+    // NOT cached: /api/ranking (POST), /api/subject + /api/collections (session-scoped).
+    '/api/calendar': { swr: 60 * 60 * 24 },
+    '/api/archive/**': { swr: 60 * 60 * 24 },
   },
 
   vite: {

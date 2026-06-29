@@ -20,32 +20,42 @@ const localIds = ref('')
 const pending = ref(false)
 const error = ref<IError | undefined>(undefined)
 
-async function getBgmtvCollections() {
-  pending.value = true
-  const { data } = await useFetch('/api/collections/list', {
+if (isLogin.value) {
+  // use bgm.tv collections (client-side fetch to avoid the Vercel serverless timeout).
+  // useFetch is declared once in setup with a reactive `offset` param, so pagination
+  // auto-refetches; pending/error come straight from useFetch instead of a hand-rolled
+  // watcher that leaked on every page change and stuck on fetch failure.
+  const {
+    pending: bgmPending,
+    data: bgmData,
+    error: bgmError,
+  } = await useFetch('/api/collections/list', {
     server: false,
-    params: { limit, offset: offset.value },
+    params: { limit, offset },
+  })
+
+  watch(bgmPending, status => {
+    pending.value = status
+  })
+
+  watch(bgmError, (err: any) => {
+    error.value = err ? { message: err.statusMessage || err.message } : undefined
   })
 
   watch(
-    data,
+    bgmData,
     value => {
       if (!value) return
-      pending.value = false
-      const collections = value as { items?: BgmItem[]; total?: number; error: IError }
+      const collections = value as { items?: BgmItem[]; total?: number; error?: IError }
 
       if (collections?.items) {
         list.value = collections.items
         total.value = collections.total || 0
       }
+      error.value = collections.error
     },
     { immediate: true },
   )
-}
-
-if (isLogin.value) {
-  // use bgm.tv collections
-  await getBgmtvCollections()
 } else {
   // use local collections
   const { pending: loading, data: favs } = await useAsyncData(
@@ -89,9 +99,8 @@ if (isLogin.value) {
   }
 }
 
-async function onPageChange(page: number) {
+function onPageChange(page: number) {
   offset.value = (page - 1) * limit
-  await getBgmtvCollections()
   window.scrollTo({ top: 0 })
 }
 </script>

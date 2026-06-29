@@ -29,7 +29,7 @@ function onRateSuccess(type: number) {
   collectionType.value = type
 }
 
-const { data } = await useFetch(`/api/subject/${id}`, { server: false })
+const { data, error: fetchError } = await useFetch(`/api/subject/${id}`, { server: false })
 
 watch(
   data,
@@ -40,6 +40,12 @@ watch(
   },
   { immediate: true },
 )
+
+watch(fetchError, (err: any) => {
+  if (err) {
+    error.value = { message: err.statusMessage || err.message }
+  }
+})
 </script>
 
 <template>
