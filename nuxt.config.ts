@@ -50,18 +50,23 @@ export default defineNuxtConfig({
 
   devServer: { port },
   runtimeConfig: {
-    app: {
-      bgmtv: {
-        appId: process.env.BGMTV_APP_ID,
-        secret: process.env.BGMTV_APP_SECRET,
-        redirectURI: process.env.BGMTV_REDIRECT_URI,
-        userAgent: process.env.BGMTV_USERAGENT,
-      },
-      sessionSecret: process.env.NUXT_SESSION_SECRET,
+    // 服务端私密(根级 runtimeConfig 不暴露给浏览器)。
+    // 注意:`app` 是 Nuxt 保留命名空间,会自动暴露给客户端 —— 之前把 secret 放在
+    // runtimeConfig.app 下,导致 sessionSecret / bgm.tv secret 泄露进 client bundle。
+    bgmtv: {
+      secret: process.env.BGMTV_APP_SECRET,
+      userAgent: process.env.BGMTV_USERAGENT,
     },
+    sessionSecret: process.env.NUXT_SESSION_SECRET,
     public: {
       appTitle,
       isBgmtvAuthorize: process.env.BGMTV_AUTHORIZE === 'true',
+      // appId / redirectURI 是公开 OAuth 参数(本就出现在浏览器地址栏),
+      // authorize 中间件在客户端导航时需要,故放 public。
+      bgmtv: {
+        appId: process.env.BGMTV_APP_ID,
+        redirectURI: process.env.BGMTV_REDIRECT_URI,
+      },
     },
   },
 

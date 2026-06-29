@@ -1,5 +1,5 @@
 export default defineNuxtRouteMiddleware(() => {
-  const { bgmtv } = useRuntimeConfig().app
+  const { bgmtv } = useRuntimeConfig().public
   const url = new URL('https://bgm.tv/oauth/authorize')
 
   url.searchParams.set('client_id', bgmtv.appId)

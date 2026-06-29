@@ -2,7 +2,7 @@ import { FetchError } from 'ofetch'
 import type { BgmtvAuthResponse } from '@/types/bgmtv'
 
 export default defineEventHandler(async event => {
-  const { bgmtv } = useRuntimeConfig().app
+  const { bgmtv } = useRuntimeConfig()
   const body = await readBody(event)
 
   const data = await $fetch<BgmtvAuthResponse | { error_description: string }>(
