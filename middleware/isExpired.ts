@@ -2,7 +2,7 @@ import { useH3Session } from '@/composables/useSession'
 import type { BgmtvAuthRequestBody } from '@/types/bgmtv'
 
 export default defineNuxtRouteMiddleware(async () => {
-  const { bgmtv } = useRuntimeConfig().app
+  const config = useRuntimeConfig()
   const { authorize } = useBgmtv()
   const { updateSession, clearSession, isExpired } = useH3Session()
 
@@ -14,11 +14,11 @@ export default defineNuxtRouteMiddleware(async () => {
       // console.warn('bgm.tv session expired')
 
       const params: BgmtvAuthRequestBody = {
-        client_id: bgmtv.appId,
-        client_secret: bgmtv.secret,
+        client_id: config.public.bgmtv.appId,
+        client_secret: config.bgmtv.secret,
         grant_type: 'refresh_token',
         refresh_token: status.refresh_token,
-        redirect_uri: bgmtv.redirectURI,
+        redirect_uri: config.public.bgmtv.redirectURI,
       }
 
       const { data, message } = await authorize(params)

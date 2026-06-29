@@ -29,11 +29,23 @@ function onRateSuccess(type: number) {
   collectionType.value = type
 }
 
-const { data } = await useFetch(`/api/subject/${id}`)
+const { data, error: fetchError } = await useFetch(`/api/subject/${id}`, { server: false })
 
-if (data.value) {
-  handleData(data.value as { subject: BgmtvSubject; collection: BgmtvCollection; error?: IError })
-}
+watch(
+  data,
+  value => {
+    if (value) {
+      handleData(value as { subject: BgmtvSubject; collection: BgmtvCollection; error?: IError })
+    }
+  },
+  { immediate: true },
+)
+
+watch(fetchError, (err: any) => {
+  if (err) {
+    error.value = { message: err.statusMessage || err.message }
+  }
+})
 </script>
 
 <template>

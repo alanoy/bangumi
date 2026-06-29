@@ -2,7 +2,7 @@ import type { H3Event } from 'h3'
 import { useH3Session } from './useSession'
 
 export const useBgmtvFetch = () => {
-  const { bgmtv } = useRuntimeConfig().app
+  const { bgmtv } = useRuntimeConfig()
 
   function getUrl(path: string, options?: { isMock: boolean }) {
     const { isMock = true } = options || {}
@@ -33,6 +33,7 @@ export const useBgmtvFetch = () => {
     }
 
     return await $fetch(url, {
+      timeout: 8000,
       headers,
       ...(restOptions || {}),
     })

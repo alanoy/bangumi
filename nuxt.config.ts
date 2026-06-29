@@ -46,27 +46,39 @@ export default defineNuxtConfig({
     defaultLocale: 'zh-cn',
     strategy: 'no_prefix',
     detectBrowserLanguage: false,
+    // i18n v9 默认开启,官方建议显式关闭(会有问题且 v10 移除)。项目用 $t/t,不用 v-t 指令,关闭无影响。
+    bundle: { optimizeTranslationDirective: false },
   },
 
   devServer: { port },
   runtimeConfig: {
-    app: {
-      bgmtv: {
-        appId: process.env.BGMTV_APP_ID,
-        secret: process.env.BGMTV_APP_SECRET,
-        redirectURI: process.env.BGMTV_REDIRECT_URI,
-        userAgent: process.env.BGMTV_USERAGENT,
-      },
-      sessionSecret: process.env.NUXT_SESSION_SECRET,
+    // 服务端私密(根级 runtimeConfig 不暴露给浏览器)。
+    // 注意:`app` 是 Nuxt 保留命名空间,会自动暴露给客户端 —— 之前把 secret 放在
+    // runtimeConfig.app 下,导致 sessionSecret / bgm.tv secret 泄露进 client bundle。
+    bgmtv: {
+      secret: process.env.BGMTV_APP_SECRET,
+      userAgent: process.env.BGMTV_USERAGENT,
     },
+    sessionSecret: process.env.NUXT_SESSION_SECRET,
     public: {
       appTitle,
       isBgmtvAuthorize: process.env.BGMTV_AUTHORIZE === 'true',
+      // appId / redirectURI 是公开 OAuth 参数(本就出现在浏览器地址栏),
+      // authorize 中间件在客户端导航时需要,故放 public。
+      bgmtv: {
+        appId: process.env.BGMTV_APP_ID,
+        redirectURI: process.env.BGMTV_REDIRECT_URI,
+      },
     },
   },
 
   routeRules: {
-    // '/item/*': { swr: true },
+    // Public, session-independent GET routes backed by (slow) bgm.tv calls.
+    // Cache 1 day so repeat visits are instant and the serverless function rarely
+    // re-runs the bgm.tv work. First visit per route still computes cold.
+    // NOT cached: /api/ranking (POST), /api/subject + /api/collections (session-scoped).
+    '/api/calendar': { swr: 60 * 60 * 24 },
+    '/api/archive/**': { swr: 60 * 60 * 24 },
   },
 
   vite: {

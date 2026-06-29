@@ -7,7 +7,7 @@ interface SessionConfig {
 }
 
 export const useH3Session = () => {
-  const { sessionSecret: password } = useRuntimeConfig().app
+  const { sessionSecret: password } = useRuntimeConfig()
 
   async function get(event: H3Event) {
     return await getSession(event, { password })
