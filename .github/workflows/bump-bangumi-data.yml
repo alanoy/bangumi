@@ -38,7 +38,7 @@ jobs:
           if ! git diff --quiet -- bun.lock package.json; then
             git add bun.lock package.json
             git commit -m "chore(deps): bump bangumi-data"
-            git push
+            git push origin "HEAD:${{ github.ref_name }}"
             echo "bangumi-data bumped and pushed -> 触发 Vercel 部署"
           else
             echo "今天 bangumi-data 没有新版本,跳过。"

@@ -82,7 +82,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
-     include: ['@vercel/analytics', '@vue/devtools-core', '@vue/devtools-kit'],
+      include: ['@vercel/analytics', '@vue/devtools-core', '@vue/devtools-kit'],
     },
   },
 
