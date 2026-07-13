@@ -46,8 +46,6 @@ export default defineNuxtConfig({
     defaultLocale: 'zh-cn',
     strategy: 'no_prefix',
     detectBrowserLanguage: false,
-    // i18n v9 默认开启,官方建议显式关闭(会有问题且 v10 移除)。项目用 $t/t,不用 v-t 指令,关闭无影响。
-    bundle: { optimizeTranslationDirective: false },
   },
 
   devServer: { port },
@@ -83,6 +81,9 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: ['@vercel/analytics', '@vue/devtools-core', '@vue/devtools-kit'],
+    },
   },
 
   compatibilityDate: '2025-05-20',
