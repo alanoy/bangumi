@@ -108,3 +108,15 @@ interface IError {
   message?: string
   description?: string
 }
+
+// import.meta.env 类型补充。
+// Nuxt 4 的 server 上下文 tsconfig 不带 vite/client,ImportMeta 上没有 env,
+// 而 composables/useBgmtvFetch.ts 同时被 app 和 server 引用 —— 这里显式声明,
+// 让两个上下文都能解析 VITE_MOCK_BASEURL。app 上下文下与 vite/client 合并,互不冲突。
+interface ImportMetaEnv {
+  readonly VITE_MOCK_BASEURL?: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}

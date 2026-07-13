@@ -23,25 +23,18 @@ function getArchives(): BgmArchive[] {
   const items: BgmArchive[] = []
 
   bgmItems.forEach(item => {
-    if (!item.begin) {
-      return false
-    }
+    if (!item.begin) return
 
-    const date = item.begin.split('T')[0].split('-')
-    const year = date[0]
-    const month = parseInt(date[1], 10)
-    const quarter = getQuarter(month)
+    const [yearStr = '', monthStr = ''] = item.begin.split('T')[0]?.split('-') ?? []
+    if (!yearStr) return
 
-    yearly[year] ??= {}
-    yearly[year][quarter] ??= 0
-    yearly[year][quarter] += 1
+    const quarter = getQuarter(parseInt(monthStr, 10))
+    const quarterCounts = (yearly[yearStr] ??= {})
+    quarterCounts[quarter] = (quarterCounts[quarter] ?? 0) + 1
   })
 
-  for (const year in yearly) {
-    items.push({
-      year,
-      items: yearly[year],
-    })
+  for (const [year, quarterCounts] of Object.entries(yearly)) {
+    items.push({ year, items: quarterCounts })
   }
 
   items.reverse()

@@ -14,13 +14,13 @@ async function getArchive(quarter = ''): Promise<BgmItem[]> {
   const [year, quarterly] = quarter.split('-')
   const items = bgmItems.filter(item => {
     if (!item.begin || item.lang === 'zh-Hans') return false
-    const datetime = item.begin.split('T')[0].split('-')
+    const datetime = item.begin.split('T')[0]?.split('-') ?? []
     const id = getBgmId(item)
 
     return (
       id &&
-      Number(year) === parseInt(datetime[0], 10) &&
-      Number(quarterly) === getQuarter(parseInt(datetime[1], 10))
+      Number(year) === parseInt(datetime[0] ?? '', 10) &&
+      Number(quarterly) === getQuarter(parseInt(datetime[1] ?? '', 10))
     )
   })
 

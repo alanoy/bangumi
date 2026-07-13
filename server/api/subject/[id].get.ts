@@ -1,5 +1,5 @@
 import { useBgmtvFetch } from '@/composables/useBgmtvFetch'
-import { BgmtvSubject, BgmtvCollection } from '@/types/bgmtv'
+import type { BgmtvSubject, BgmtvCollection } from '@/types/bgmtv'
 import { useH3Session } from '~/composables/useSession'
 
 export default defineEventHandler(async event => {
