@@ -6,7 +6,7 @@
       "name": "bangumi",
       "dependencies": {
         "@tailwindcss/vite": "^4.3.2",
-        "bangumi-data": "latest",
+        "bangumi-data": "^0.3.213",
         "tailwindcss": "^4.3.2",
       },
       "devDependencies": {
