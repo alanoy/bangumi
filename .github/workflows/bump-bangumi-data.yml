@@ -1,0 +1,45 @@
+name: Bump bangumi-data
+
+# 每天把 bangumi-data 升到最新并提交,bangumi-data(数据源 npm 包)会持续收录新番。
+# package.json 里写的是 "latest",但它只在生成 bun.lock 时解析一次、随后被锁文件钉死,
+# Vercel 按锁文件装依赖 —— 锁文件不更新,Vercel 就永远停在旧版本。这里靠定时刷新锁文件来保新。
+on:
+  schedule:
+    - cron: '17 6 * * *' # 每天 UTC 06:17(北京 14:17)跑一次
+  workflow_dispatch: # 也支持在 Actions 页面手动触发
+
+permissions:
+  contents: write # 允许把更新提交并推回仓库
+
+concurrency:
+  group: bump-bangumi-data
+  cancel-in-progress: false
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 锁定与本地一致的 bun 版本,避免 CI/本地 bun 版本差异导致 bun.lock 格式漂移
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.3.14'
+
+      - run: bun install
+
+      - name: Update bangumi-data to latest
+        run: bun update bangumi-data
+
+      - name: Commit & push if lockfile changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- bun.lock package.json; then
+            git add bun.lock package.json
+            git commit -m "chore(deps): bump bangumi-data"
+            git push
+            echo "bangumi-data bumped and pushed -> 触发 Vercel 部署"
+          else
+            echo "今天 bangumi-data 没有新版本,跳过。"
+          fi
