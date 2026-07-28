@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",
-    "bangumi-data": "^0.3.215",
+    "bangumi-data": "^0.3.216",
     "tailwindcss": "^4.3.2"
   }
 }
