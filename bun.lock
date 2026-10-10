@@ -6,7 +6,7 @@
       "name": "bangumi",
       "dependencies": {
         "@tailwindcss/vite": "^4.3.2",
-        "bangumi-data": "^0.3.229",
+        "bangumi-data": "^0.3.230",
         "tailwindcss": "^4.3.2",
       },
       "devDependencies": {
@@ -833,7 +833,7 @@
 
     "balanced-match": ["balanced-match@1.0.2", "", {}, "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw=="],
 
-    "bangumi-data": ["bangumi-data@0.3.229", "", {}, "sha512-1xzlL5YD5Ul3M6/wuFDpw5k2RKgMtog3vYlKYtm0DEBUKLOkFw0nasG9EcTTjmSQfS98kCy2LuwO6tUPOqIEGA=="],
+    "bangumi-data": ["bangumi-data@0.3.230", "", {}, "sha512-EXcNw9i0FXM65YdAhAzbTidFusqw9gbhDQ5KullcRXlhXkgOoqfhnAjq4X0d6M/4KlDKofEy/UgqLwdAQtBkCA=="],
 
     "bare-events": ["bare-events@2.9.1", "", { "peerDependencies": { "bare-abort-controller": "*" }, "optionalPeers": ["bare-abort-controller"] }, "sha512-Z0oHEHAFDZkffN8Qc39zNZjQlMDkPJRyyyZieU1VH7u8c5S+qHZ2S8ixdKIAxEjfHO7FJxXmJWgteOghVanIsg=="],
 
